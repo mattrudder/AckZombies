@@ -1,0 +1,21 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AckZombies", "AckZombies.vcproj", "{6B82AEF6-3A86-4B37-A703-051A220CA4FA}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{6B82AEF6-3A86-4B37-A703-051A220CA4FA}.Debug.ActiveCfg = Debug|Win32
+		{6B82AEF6-3A86-4B37-A703-051A220CA4FA}.Debug.Build.0 = Debug|Win32
+		{6B82AEF6-3A86-4B37-A703-051A220CA4FA}.Release.ActiveCfg = Release|Win32
+		{6B82AEF6-3A86-4B37-A703-051A220CA4FA}.Release.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
