@@ -93,7 +93,7 @@ public:
 	//! Singleton stuff.
 	//!@{
 	CDirectInputWrapper(const CDirectInputWrapper&) {}
-	operator=(const CDirectInputWrapper&){}
+	CDirectInputWrapper& operator=(const CDirectInputWrapper&) { return *this; }
 	virtual ~CDirectInputWrapper(void);
 	//!@}
 

@@ -165,7 +165,7 @@ void CLoadState::tick(void)
 			else if (delimited.back() == CString("bin"))
 			{
 				ifstream iflBin;
-				iflBin.open(string, ios_base::in | std::ios_base::binary);
+				iflBin.open(string.GetBuffer(), ios_base::in | std::ios_base::binary);
 
 				if (iflBin.is_open())
 				{

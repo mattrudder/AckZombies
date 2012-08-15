@@ -41,7 +41,7 @@ public:
 	* @param[in]	poPlayer	Pointer to the player that has this weapon
 	*/
 	CProjectileWeapon(int nDamage = 0, int nCost = 0, int nAmmo = 0, int nAOE = 0, CCharacter *poCharacter = NULL) : 
-	  CBaseWeapon(nDamage, nCost, nAmmo, nAOE, poCharacter), m_oSplashFunctor(doSplashDamage, this)
+	  CBaseWeapon(nDamage, nCost, nAmmo, nAOE, poCharacter), m_oSplashFunctor(&CProjectileWeapon::doSplashDamage, this)
 	{
 	}
 

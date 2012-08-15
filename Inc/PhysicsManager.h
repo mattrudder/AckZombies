@@ -67,7 +67,12 @@ class CPhysicsManager : public CSingleton<CPhysicsManager>
 	*/
 	CPhysicsManager(void);
 	~CPhysicsManager(void);
-	CPhysicsManager(const CPhysicsManager &r) : m_oCheckCol(checkCollision, this), m_oCheckFrustum(checkFrustumCol, this) {}
+	CPhysicsManager(const CPhysicsManager &r)
+		: m_oCheckCol(&CPhysicsManager::checkCollision, this)
+		, m_oCheckFrustum(&CPhysicsManager::checkFrustumCol, this)
+	{
+	}
+
 	CPhysicsManager &operator =(const CPhysicsManager &r) {}
 	//!@}
 public:

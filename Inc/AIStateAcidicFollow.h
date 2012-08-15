@@ -34,7 +34,7 @@ class CAIStateAcidicFollow : public CAIState, public CSingleton<CAIStateAcidicFo
 	//!@{
 	CAIStateAcidicFollow(void);
 	CAIStateAcidicFollow(const CAIStateAcidicFollow&) {}
-	operator=(const CAIStateAcidicFollow&){}
+	CAIStateAcidicFollow& operator=(const CAIStateAcidicFollow&){ return *this; }
 	virtual ~CAIStateAcidicFollow(void);
 	//!@}
 

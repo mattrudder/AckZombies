@@ -30,7 +30,7 @@
 */
 class CObjectManager : public CSingleton<CObjectManager>
 {
-	friend class CSingleton;
+	friend class CSingleton<CObjectManager>;
 public:
 	struct SObjectCreation
 	{
@@ -58,7 +58,7 @@ protected:
 	//!@{
 	CObjectManager(void) {}
 	CObjectManager(const CObjectManager&) {}
-	operator=(const CObjectManager&){}
+	CObjectManager& operator=(const CObjectManager&) { return *this; }
 	virtual ~CObjectManager(void);
 	//!@}
 

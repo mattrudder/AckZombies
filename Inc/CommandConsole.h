@@ -52,7 +52,7 @@ protected:
 	//!@{
 	CCommandConsole(float fConsoleSize = 256.0f, float fAnimSpeed = 7.0f);
 	CCommandConsole(const CCommandConsole&){}
-	operator=(const CCommandConsole&){}
+	CCommandConsole& operator=(const CCommandConsole&){ return *this; }
 	virtual ~CCommandConsole(void);
 	//!@}
 	
@@ -107,12 +107,14 @@ protected:
 	int_type overflow(int_type c)
 	{
 		m_osOutput.put(c);
-		if(m_osOutput.str().size() > MAX_CONSOLE_LENGTH)
+
+		std::string outputString = m_osOutput.str();
+		if (outputString.length() > MAX_CONSOLE_LENGTH)
 		{
-			DWORD dwCharsToRemove = (DWORD)(MAX_CONSOLE_LENGTH - m_osOutput.str().size());
+			DWORD dwCharsToRemove = (DWORD)(outputString.length() - MAX_CONSOLE_LENGTH);
 
 			// Split into lines.
-			CString sCon(m_osOutput.str().c_str());
+			CString sCon(outputString.c_str());
 			std::vector<CString> vLines;
 			sCon.ToList(vLines, "\r\n");
 			
@@ -121,13 +123,20 @@ protected:
 			
 			// Determine how many lines should be removed.
 			size_t nListSize = vLines.size(), nIndex = 0;
-			while(dwCharsToRemove)
-				dwCharsToRemove -= (DWORD)vLines[nIndex++].GetLength();
+			for (std::vector<CString>::const_iterator it = vLines.begin(); it != vLines.end(); ++it)
+			{
+				++nIndex;
+				size_t lineLength = it->GetLength();
 
-			// Ouput last lines
-			for(size_t i = nIndex; i < nListSize; ++i)
-				m_osOutput << vLines[i].GetBuffer() << '\n';
+				m_osOutput << it->GetBuffer() << endl;
+				
+				if (dwCharsToRemove < lineLength)
+					break;
+
+				dwCharsToRemove -= lineLength;
+			}
 		}
+
 		return c;
 	}
 

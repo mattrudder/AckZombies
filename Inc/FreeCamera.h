@@ -34,7 +34,7 @@ class CFreeCamera : public CSingleton<CFreeCamera>
 	//!@{
 	CFreeCamera(void);
 	CFreeCamera(const CFreeCamera&) {}
-	operator=(const CFreeCamera&){}
+	CFreeCamera& operator=(const CFreeCamera&) { return *this; }
 	virtual ~CFreeCamera(void);
 	//!@}
 public:

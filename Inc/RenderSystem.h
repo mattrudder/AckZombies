@@ -45,7 +45,7 @@ class CObject;
 */
 class CRenderSystem : public CSingleton<CRenderSystem>
 {
-	friend class CSingleton;
+	friend class CSingleton<CRenderSystem>;
 protected:
 	//! Window handle
 	HWND m_hWnd;
@@ -72,7 +72,8 @@ protected:
 
 	//! Singleton stuff.
 	//!@{
-	CRenderSystem(void) : m_oRenderFunc(renderActor, this)
+	CRenderSystem(void)
+		: m_oRenderFunc(&CRenderSystem::renderActor, this)
 	{
 		memset(&m_oStickyKeys, 0, sizeof(STICKYKEYS));
 		memset(&m_oToggleKeys, 0, sizeof(TOGGLEKEYS));
@@ -81,8 +82,9 @@ protected:
 		m_oToggleKeys.cbSize = sizeof(TOGGLEKEYS);
 		m_oFilterKeys.cbSize = sizeof(FILTERKEYS);
 	}
-	CRenderSystem(const CRenderSystem&)  : m_oRenderFunc(renderActor, this) {}
-	operator=(const CRenderSystem&) {}
+	CRenderSystem(const CRenderSystem&)
+		: m_oRenderFunc(&CRenderSystem::renderActor, this) {}
+	CRenderSystem& operator=(const CRenderSystem&) { return *this; }
 	virtual ~CRenderSystem(void) { shutdown(); }
 	//!@}
 

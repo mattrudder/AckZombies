@@ -95,7 +95,7 @@ private:
 	//! Singleton stuff.
 	//!@{
 	CMenuManager(const CMenuManager&) {}
-	operator=(const CMenuManager&){}
+	CMenuManager& operator=(const CMenuManager&) { return *this; }
 	//!@}
 
 public:

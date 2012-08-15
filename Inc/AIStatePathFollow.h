@@ -32,7 +32,7 @@ class CAIStatePathFollow : public CAIState, public CSingleton<CAIStatePathFollow
 	//!@{
 	CAIStatePathFollow(void);
 	CAIStatePathFollow(const CAIStatePathFollow&) {}
-	operator=(const CAIStatePathFollow&){}
+	CAIStatePathFollow& operator=(const CAIStatePathFollow&){ return *this; }
 	virtual ~CAIStatePathFollow(void);
 	//!@}
 

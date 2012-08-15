@@ -1,0 +1,386 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{6B82AEF6-3A86-4B37-A703-051A220CA4FA}</ProjectGuid>
+    <RootNamespace>AckZombies</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Bin\System\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Bin\System\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/D "_WIN32_WINNT=0x0501" /D "WINVER=0x0501" %(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(SolutionDir);Inc;3rd Party;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>xerces-c_3D.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>%(OutputFile)</OutputFile>
+      <AdditionalLibraryDirectories>Libs;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)AckZombies.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>/D "_WIN32_WINNT=0x0501" /D "WINVER=0x0501" %(AdditionalOptions)</AdditionalOptions>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <AdditionalIncludeDirectories>$(SolutionDir);Inc;3rd Party;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>xerces-c_3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>%(OutputFile)</OutputFile>
+      <AdditionalLibraryDirectories>Libs;$(DXSDK_DIR)\Lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Message>Incrementing Build Count...</Message>
+      <Command>"$(SolutionDir)\BuildInc.exe" -minor:3 -build</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\BaseGameState.h" />
+    <ClInclude Include="Inc\GameoverState.h" />
+    <ClInclude Include="Inc\GameState.h" />
+    <ClInclude Include="Inc\LoadState.h" />
+    <ClInclude Include="Inc\MenuState.h" />
+    <ClInclude Include="Inc\PauseState.h" />
+    <ClInclude Include="Inc\TestState.h" />
+    <ClInclude Include="Inc\VendingState.h" />
+    <ClInclude Include="Inc\WinState.h" />
+    <ClInclude Include="Inc\AcespaceEngine.h" />
+    <ClInclude Include="Inc\Actor.h" />
+    <ClInclude Include="Inc\ActorIncludes.h" />
+    <ClInclude Include="Inc\GameKernel.h" />
+    <ClInclude Include="Inc\Globals.h" />
+    <ClInclude Include="Inc\Object.h" />
+    <ClInclude Include="Inc\ObjectManager.h" />
+    <ClInclude Include="Inc\ObjectTypes.h" />
+    <ClInclude Include="Inc\ConfigFile.h" />
+    <ClInclude Include="Inc\DebugStream.h" />
+    <ClInclude Include="Inc\Functor.h" />
+    <ClInclude Include="Inc\MethodBinaryFunctor.h" />
+    <ClInclude Include="Inc\MethodFunctor.h" />
+    <ClInclude Include="Inc\MethodSingleFunctor.h" />
+    <ClInclude Include="Inc\Singleton.h" />
+    <ClInclude Include="Inc\StaticFunctor.h" />
+    <ClInclude Include="Inc\StringA.h" />
+    <ClInclude Include="Inc\StringW.h" />
+    <ClInclude Include="Inc\TickTimer.h" />
+    <ClInclude Include="Inc\Timer.h" />
+    <ClInclude Include="Inc\twobufstream.h" />
+    <ClInclude Include="Inc\BitmapFont.h" />
+    <ClInclude Include="Inc\Camera.h" />
+    <ClInclude Include="Inc\FreeCamera.h" />
+    <ClInclude Include="Inc\Geometry.h" />
+    <ClInclude Include="Inc\Material.h" />
+    <ClInclude Include="Inc\Mesh.h" />
+    <ClInclude Include="Inc\RenderDevice.h" />
+    <ClInclude Include="Inc\RenderResource.h" />
+    <ClInclude Include="Inc\RenderSystem.h" />
+    <ClInclude Include="Inc\Texture2D.h" />
+    <ClInclude Include="Inc\Frustum.h" />
+    <ClInclude Include="Inc\Octant.h" />
+    <ClInclude Include="Inc\Octree.h" />
+    <ClInclude Include="Inc\RadixSort.h" />
+    <ClInclude Include="Inc\RenderGroup.h" />
+    <ClInclude Include="Inc\RenderList.h" />
+    <ClInclude Include="Inc\RenderQueue.h" />
+    <ClInclude Include="Inc\VertexCache.h" />
+    <ClInclude Include="Inc\ParticleAttribute.h" />
+    <ClInclude Include="Inc\ParticleEffect.h" />
+    <ClInclude Include="Inc\ParticleEffectContentHandler.h" />
+    <ClInclude Include="Inc\ParticleEmitter.h" />
+    <ClInclude Include="Inc\ParticleKeyframe.h" />
+    <ClInclude Include="Inc\ParticleManager.h" />
+    <ClInclude Include="Inc\ParticleSystem.h" />
+    <ClInclude Include="Inc\Light.h" />
+    <ClInclude Include="Inc\PointLight.h" />
+    <ClInclude Include="Inc\SpotLight.h" />
+    <ClInclude Include="Inc\CollisionGeometry.h" />
+    <ClInclude Include="Inc\Math3D.h" />
+    <ClInclude Include="Inc\PhysicsManager.h" />
+    <ClInclude Include="Inc\Character.h" />
+    <ClInclude Include="Inc\Player.h" />
+    <ClInclude Include="Inc\StatSystem.h" />
+    <ClInclude Include="Inc\BaseResource.h" />
+    <ClInclude Include="Inc\ResourceManager.h" />
+    <ClInclude Include="Inc\ResourceTypes.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Version.h" />
+    <ClInclude Include="Inc\DirectInputWrapper.h" />
+    <ClInclude Include="Inc\XInputWrapper.h" />
+    <ClInclude Include="Inc\Command.h" />
+    <ClInclude Include="Inc\CommandConsole.h" />
+    <ClInclude Include="Inc\CommandParam.h" />
+    <ClInclude Include="Inc\CommandCheat.h" />
+    <ClInclude Include="Src\CommandDrawPlacement.h" />
+    <ClInclude Include="Inc\CommandExportPlacement.h" />
+    <ClInclude Include="Inc\CommandQuit.h" />
+    <ClInclude Include="Inc\CommandQuitPlacement.h" />
+    <ClInclude Include="Inc\Commands.h" />
+    <ClInclude Include="Inc\CommandShowFPS.h" />
+    <ClInclude Include="Inc\CommandStartPlacement.h" />
+    <ClInclude Include="Inc\CommandStringPlacement.h" />
+    <ClInclude Include="Inc\Acidic.h" />
+    <ClInclude Include="Inc\AIEntity.h" />
+    <ClInclude Include="Inc\AIGroup.h" />
+    <ClInclude Include="Inc\AIManager.h" />
+    <ClInclude Include="Inc\AINode.h" />
+    <ClInclude Include="Inc\AIState.h" />
+    <ClInclude Include="Inc\AIStateAcidicAttack.h" />
+    <ClInclude Include="Inc\AIStateAcidicFollow.h" />
+    <ClInclude Include="Inc\AIStateFollowLeader.h" />
+    <ClInclude Include="Inc\AIStateGaseousAttack.h" />
+    <ClInclude Include="Inc\AIStateGaseousFollow.h" />
+    <ClInclude Include="Inc\AIStateMove.h" />
+    <ClInclude Include="Inc\AIStatePathFollow.h" />
+    <ClInclude Include="Inc\AIStatePathPlan.h" />
+    <ClInclude Include="Inc\AIStateQBFollow.h" />
+    <ClInclude Include="Inc\AIStateQBMeleeAttack.h" />
+    <ClInclude Include="Inc\AIStateQBRangeAttack.h" />
+    <ClInclude Include="Inc\AIStateSpawn.h" />
+    <ClInclude Include="Inc\AIStateStraightToGoal.h" />
+    <ClInclude Include="Inc\AIStateZombieAttack.h" />
+    <ClInclude Include="Inc\Enemy.h" />
+    <ClInclude Include="Inc\Gaseous.h" />
+    <ClInclude Include="Inc\QBZombie.h" />
+    <ClInclude Include="Inc\Zombie.h" />
+    <ClInclude Include="Inc\ControlsMenu.h" />
+    <ClInclude Include="Inc\CreditsMenu.h" />
+    <ClInclude Include="Inc\HighScoreMenu.h" />
+    <ClInclude Include="Inc\HUD.h" />
+    <ClInclude Include="Inc\IntroMenu.h" />
+    <ClInclude Include="Inc\MainButtons.h" />
+    <ClInclude Include="Inc\Menu.h" />
+    <ClInclude Include="Inc\MenuButton.h" />
+    <ClInclude Include="Inc\MenuManager.h" />
+    <ClInclude Include="Inc\MultiplayerMenu.h" />
+    <ClInclude Include="Inc\ObjectiveHUD.h" />
+    <ClInclude Include="Inc\Options.h" />
+    <ClInclude Include="Inc\OptionsMenu.h" />
+    <ClInclude Include="Inc\VendingMachine.h" />
+    <ClInclude Include="Inc\VendingMachineButtons.h" />
+    <ClInclude Include="Inc\50AWE.h" />
+    <ClInclude Include="Inc\BaseWeapon.h" />
+    <ClInclude Include="Inc\BigCluckingBomb.h" />
+    <ClInclude Include="Inc\DesertEagle50.h" />
+    <ClInclude Include="Inc\FootBall.h" />
+    <ClInclude Include="Inc\Grenade.h" />
+    <ClInclude Include="Inc\HolyWaterBalloonCanon.h" />
+    <ClInclude Include="Inc\IceCream.h" />
+    <ClInclude Include="Inc\Pistol.h" />
+    <ClInclude Include="Inc\Potato.h" />
+    <ClInclude Include="Inc\PotatoChainGun.h" />
+    <ClInclude Include="Inc\ProjectileWeapon.h" />
+    <ClInclude Include="Inc\RayCastWeapon.h" />
+    <ClInclude Include="Inc\Rocket.h" />
+    <ClInclude Include="Inc\RocketLauncher.h" />
+    <ClInclude Include="Inc\Shotgun.h" />
+    <ClInclude Include="Inc\TripleBarrelShotgun.h" />
+    <ClInclude Include="Inc\AnimAllocator.h" />
+    <ClInclude Include="Inc\AnimatedMesh.h" />
+    <ClInclude Include="Inc\Sound.h" />
+    <ClInclude Include="Inc\SoundManager.h" />
+    <ClInclude Include="Inc\SoundTypes.h" />
+    <ClInclude Include="Inc\ActorSpawn.h" />
+    <ClInclude Include="Inc\ActorSpawnTrigger.h" />
+    <ClInclude Include="Inc\ObjectiveBarrier.h" />
+    <ClInclude Include="Inc\ObjectiveTrigger.h" />
+    <ClInclude Include="Inc\PlacementState.h" />
+    <ClInclude Include="Inc\Coin.h" />
+    <ClInclude Include="Inc\HealthPack.h" />
+    <ClInclude Include="Inc\SpeedPack.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\BaseGameState.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="Src\LoadState.cpp" />
+    <ClCompile Include="Src\MenuState.cpp" />
+    <ClCompile Include="Src\VendingState.cpp" />
+    <ClCompile Include="Src\Actor.cpp" />
+    <ClCompile Include="Src\GameKernel.cpp" />
+    <ClCompile Include="Src\Object.cpp" />
+    <ClCompile Include="Src\ObjectManager.cpp" />
+    <ClCompile Include="Src\ConfigFile.cpp" />
+    <ClCompile Include="Src\DebugStream.cpp" />
+    <ClCompile Include="Src\StringA.cpp" />
+    <ClCompile Include="Src\StringW.cpp" />
+    <ClCompile Include="Src\Timer.cpp" />
+    <ClCompile Include="Src\BitmapFont.cpp" />
+    <ClCompile Include="Src\Camera.cpp" />
+    <ClCompile Include="Src\FreeCamera.cpp" />
+    <ClCompile Include="Src\Material.cpp" />
+    <ClCompile Include="Src\Mesh.cpp">
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+      <ObjectFileName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(IntDir)%(Filename)1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="Src\RenderDevice.cpp" />
+    <ClCompile Include="Src\RenderResource.cpp" />
+    <ClCompile Include="Src\RenderSystem.cpp" />
+    <ClCompile Include="Src\Texture2D.cpp" />
+    <ClCompile Include="Src\Frustum.cpp" />
+    <ClCompile Include="Src\Geometry.cpp" />
+    <ClCompile Include="Src\Octant.cpp" />
+    <ClCompile Include="Src\Octree.cpp" />
+    <ClCompile Include="Src\RenderGroup.cpp" />
+    <ClCompile Include="Src\RenderList.cpp" />
+    <ClCompile Include="Src\RenderQueue.cpp" />
+    <ClCompile Include="Src\VertexCache.cpp" />
+    <ClCompile Include="Src\ParticleAttribute.cpp" />
+    <ClCompile Include="Src\ParticleEffect.cpp" />
+    <ClCompile Include="Src\ParticleEffectContentHandler.cpp" />
+    <ClCompile Include="Src\ParticleEmitter.cpp" />
+    <ClCompile Include="Src\ParticleKeyframe.cpp" />
+    <ClCompile Include="Src\ParticleManager.cpp" />
+    <ClCompile Include="Src\ParticleSystem.cpp" />
+    <ClCompile Include="Src\Light.cpp" />
+    <ClCompile Include="Src\PointLight.cpp" />
+    <ClCompile Include="Src\SpotLight.cpp" />
+    <ClCompile Include="Src\CollisionGeometry.cpp" />
+    <ClCompile Include="Src\Math3D.cpp" />
+    <ClCompile Include="Src\PhysicsManager.cpp" />
+    <ClCompile Include="Src\Character.cpp" />
+    <ClCompile Include="Src\Player.cpp" />
+    <ClCompile Include="Src\StatSystem.cpp" />
+    <ClCompile Include="Src\BaseResource.cpp" />
+    <ClCompile Include="Src\ResourceManager.cpp" />
+    <ClCompile Include="Src\Main.cpp" />
+    <ClCompile Include="Src\DirectInputWrapper.cpp" />
+    <ClCompile Include="Src\XInputWrapper.cpp" />
+    <ClCompile Include="Src\Command.cpp" />
+    <ClCompile Include="Src\CommandConsole.cpp" />
+    <ClCompile Include="Src\Acidic.cpp" />
+    <ClCompile Include="Src\AIEntity.cpp" />
+    <ClCompile Include="Src\AIGroup.cpp" />
+    <ClCompile Include="Src\AIManager.cpp" />
+    <ClCompile Include="Src\AINode.cpp" />
+    <ClCompile Include="Src\AIStateAcidicAttack.cpp" />
+    <ClCompile Include="Src\AIStateAcidicFollow.cpp" />
+    <ClCompile Include="Src\AIStateFollowLeader.cpp" />
+    <ClCompile Include="Src\AIStateGaseousAttack.cpp" />
+    <ClCompile Include="Src\AIStateGaseousFollow.cpp" />
+    <ClCompile Include="Src\AIStateMove.cpp" />
+    <ClCompile Include="Src\AIStatePathFollow.cpp" />
+    <ClCompile Include="Src\AIStatePathPlan.cpp" />
+    <ClCompile Include="Src\AIStateQBFollow.cpp" />
+    <ClCompile Include="Src\AIStateQBMeleeAttack.cpp" />
+    <ClCompile Include="Src\AIStateQBRangeAttack.cpp" />
+    <ClCompile Include="Src\AIStateSpawn.cpp" />
+    <ClCompile Include="Src\AIStateStraightToGoal.cpp" />
+    <ClCompile Include="Src\AIStateZombieAttack.cpp" />
+    <ClCompile Include="Src\Enemy.cpp" />
+    <ClCompile Include="Src\Gaseous.cpp" />
+    <ClCompile Include="Src\QBZombie.cpp" />
+    <ClCompile Include="Src\Zombie.cpp" />
+    <ClCompile Include="Src\ControlsMenu.cpp" />
+    <ClCompile Include="Src\CreditsMenu.cpp" />
+    <ClCompile Include="Src\HighScoreMenu.cpp" />
+    <ClCompile Include="Src\HUD.cpp" />
+    <ClCompile Include="Src\IntroMenu.cpp" />
+    <ClCompile Include="Src\MainButtons.cpp" />
+    <ClCompile Include="Src\Menu.cpp" />
+    <ClCompile Include="Src\MenuButton.cpp" />
+    <ClCompile Include="Src\MenuManager.cpp" />
+    <ClCompile Include="Src\MultiplayerMenu.cpp" />
+    <ClCompile Include="Src\ObjectiveHUD.cpp" />
+    <ClCompile Include="Src\Options.cpp" />
+    <ClCompile Include="Src\OptionsMenu.cpp" />
+    <ClCompile Include="Src\VendingMachine.cpp" />
+    <ClCompile Include="Src\VendingMachineButtons.cpp" />
+    <ClCompile Include="Src\50AWE.cpp" />
+    <ClCompile Include="Src\BigCluckingBomb.cpp" />
+    <ClCompile Include="Src\DesertEagle50.cpp" />
+    <ClCompile Include="Src\FootBall.cpp" />
+    <ClCompile Include="Src\Grenade.cpp" />
+    <ClCompile Include="Src\HolyWaterBalloonCanon.cpp" />
+    <ClCompile Include="Src\IceCream.cpp" />
+    <ClCompile Include="Src\Pistol.cpp" />
+    <ClCompile Include="Src\Potato.cpp" />
+    <ClCompile Include="Src\PotatoChainGun.cpp" />
+    <ClCompile Include="Src\ProjectileWeapon.cpp" />
+    <ClCompile Include="Src\RayCastWeapon.cpp" />
+    <ClCompile Include="Src\Rocket.cpp" />
+    <ClCompile Include="Src\RocketLauncher.cpp" />
+    <ClCompile Include="Src\Shotgun.cpp" />
+    <ClCompile Include="Src\TripleBarrelShotgun.cpp" />
+    <ClCompile Include="Src\AnimAllocator.cpp" />
+    <ClCompile Include="Src\AnimatedMesh.cpp" />
+    <ClCompile Include="Src\Sound.cpp" />
+    <ClCompile Include="Src\SoundManager.cpp" />
+    <ClCompile Include="Src\ActorSpawnTrigger.cpp" />
+    <ClCompile Include="Src\ObjectiveTrigger.cpp" />
+    <ClCompile Include="Src\PlacementState.cpp" />
+    <ClCompile Include="Src\Coin.cpp" />
+    <ClCompile Include="Src\HealthPack.cpp" />
+    <ClCompile Include="Src\SpeedPack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AckZombies.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

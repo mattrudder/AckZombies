@@ -44,7 +44,7 @@ class CAIStatePathPlan : public CAIState, public CSingleton<CAIStatePathPlan>
 	//!@{
 	CAIStatePathPlan(void);
 	CAIStatePathPlan(const CAIStatePathPlan&) {}
-	operator=(const CAIStatePathPlan&){}
+	CAIStatePathPlan& operator=(const CAIStatePathPlan&){ return *this; }
 	virtual ~CAIStatePathPlan(void);
 	//!@}
 

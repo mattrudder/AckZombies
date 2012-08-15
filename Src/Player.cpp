@@ -28,7 +28,9 @@ float CPlayer::m_fMaxAwesome = 30.0f;
 * CPlayer::CPlayer()
 * @date Modified March 29, 2006
 */
-CPlayer::CPlayer(EObjectType eType) : CCharacter(eType), m_oTargeted(checkTargeted, this)
+CPlayer::CPlayer(EObjectType eType)
+	: CCharacter(eType)
+	, m_oTargeted(&CPlayer::checkTargeted, this)
 {
 	// set the initial orientation to a unit vector
 	m_fMaxRunSpeed = RUNNING_SPEED;

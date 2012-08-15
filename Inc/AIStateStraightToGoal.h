@@ -28,7 +28,7 @@ class CAIStateStraightToGoal : public CAIState, public CSingleton<CAIStateStraig
 	//!@{
 	CAIStateStraightToGoal(void);
 	CAIStateStraightToGoal(const CAIStateStraightToGoal&) {}
-	operator=(const CAIStateStraightToGoal&){}
+	CAIStateStraightToGoal& operator=(const CAIStateStraightToGoal&){ return *this; }
 	virtual ~CAIStateStraightToGoal(void);
 	//!@}
 

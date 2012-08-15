@@ -32,7 +32,7 @@ class CAIStateGaseousFollow : public CAIState, public CSingleton<CAIStateGaseous
 	//!@{
 	CAIStateGaseousFollow(void);
 	CAIStateGaseousFollow(const CAIStateGaseousFollow&) {}
-	operator=(const CAIStateGaseousFollow&){}
+	CAIStateGaseousFollow& operator=(const CAIStateGaseousFollow&){ return *this; }
 	virtual ~CAIStateGaseousFollow(void);
 	//!@}
 

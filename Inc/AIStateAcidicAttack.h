@@ -27,7 +27,7 @@ class CAIStateAcidicAttack : public CAIState, public CSingleton<CAIStateAcidicAt
 	//!@{
 	CAIStateAcidicAttack(void);
 	CAIStateAcidicAttack(const CAIStateAcidicAttack&) {}
-	operator=(const CAIStateAcidicAttack&){}
+	CAIStateAcidicAttack& operator=(const CAIStateAcidicAttack&){ return *this; }
 	virtual ~CAIStateAcidicAttack(void);
 	//!@}
 

@@ -75,7 +75,7 @@ protected:
 	//!@{
 	CParticleManager(void);
 	CParticleManager(const CParticleManager&);
-	operator=(const CParticleManager&){}
+	CParticleManager& operator=(const CParticleManager&){ return *this; }
 	virtual ~CParticleManager(void);
 	//!@}
 

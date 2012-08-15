@@ -36,7 +36,7 @@ class CAIManager : public CSingleton<CAIManager>
 	//!@{
 	CAIManager(void);
 	CAIManager(const CAIManager&) {}
-	operator=(const CAIManager&){}
+	CAIManager& operator=(const CAIManager&) { return *this; }
 	virtual ~CAIManager(void);
 	//!@}
 

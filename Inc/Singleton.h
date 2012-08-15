@@ -23,7 +23,7 @@
 template<typename singleton_t>
 class CSingleton
 {
-	friend class singleton_t;
+	friend singleton_t;
 protected:
 	//! Single instance to our class.
 	static singleton_t* m_poInstance;
@@ -32,7 +32,7 @@ protected:
 	//!@{
 	CSingleton(void) {}
 	CSingleton(const CSingleton<singleton_t>&) {}
-	operator=(const CSingleton<singleton_t>&){}
+	CSingleton& operator=(const CSingleton<singleton_t>&){ return *this; }
 	virtual ~CSingleton(void) {}
 	//!@}
 public:

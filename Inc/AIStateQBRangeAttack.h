@@ -27,7 +27,7 @@ class CAIStateQBRangeAttack : public CAIState, public CSingleton<CAIStateQBRange
 	//!@{
 	CAIStateQBRangeAttack(void);
 	CAIStateQBRangeAttack(const CAIStateQBRangeAttack&) {}
-	operator=(const CAIStateQBRangeAttack&){}
+	CAIStateQBRangeAttack& operator=(const CAIStateQBRangeAttack&){ return *this; }
 	virtual ~CAIStateQBRangeAttack(void);
 	//!@}
 

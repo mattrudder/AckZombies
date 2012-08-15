@@ -27,7 +27,7 @@ class CAIStateZombieAttack : public CAIState, public CSingleton<CAIStateZombieAt
 	//!@{
 	CAIStateZombieAttack(void);
 	CAIStateZombieAttack(const CAIStateZombieAttack&) {}
-	operator=(const CAIStateZombieAttack&){}
+	CAIStateZombieAttack& operator=(const CAIStateZombieAttack&) { return *this; }
 	virtual ~CAIStateZombieAttack(void);
 	//!@}
 

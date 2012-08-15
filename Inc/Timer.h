@@ -30,7 +30,7 @@ protected:
 	//!@{
 	CTimer(void);
 	CTimer(const CTimer&) {}
-	operator=(const CTimer&){}
+	CTimer& operator=(const CTimer&) { return *this; }
 	virtual ~CTimer(void) {}
 	//!@}
 

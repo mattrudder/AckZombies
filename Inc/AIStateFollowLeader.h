@@ -30,7 +30,7 @@ class CAIStateFollowLeader : public CAIState, public CSingleton<CAIStateFollowLe
 	//!@{
 	CAIStateFollowLeader(void);
 	CAIStateFollowLeader(const CAIStateFollowLeader&) {}
-	operator=(const CAIStateFollowLeader&){}
+	CAIStateFollowLeader& operator=(const CAIStateFollowLeader&){ return *this; }
 	virtual ~CAIStateFollowLeader(void);
 	//!@}
 

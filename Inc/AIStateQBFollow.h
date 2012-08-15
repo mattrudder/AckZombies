@@ -35,7 +35,7 @@ class CAIStateQBFollow : public CAIState, public CSingleton<CAIStateQBFollow>
 	//!@{
 	CAIStateQBFollow(void);
 	CAIStateQBFollow(const CAIStateQBFollow&) {}
-	operator=(const CAIStateQBFollow&){}
+	CAIStateQBFollow& operator=(const CAIStateQBFollow&){ return *this; }
 	virtual ~CAIStateQBFollow(void);
 	//!@}
 

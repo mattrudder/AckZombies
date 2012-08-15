@@ -67,14 +67,14 @@ public:
 	*
 	* @date Created April 12, 2006
 	*/
-	inline addCircleTime(double dTime) { m_dCircleTime += dTime; }
+	inline void addCircleTime(double dTime) { m_dCircleTime += dTime; }
 
 	/**
 	* reset the circle time
 	*
 	* @date Created April 12, 2006
 	*/
-	inline resetCircleTime(void) { m_dCircleTime = 0.0f; }
+	inline void resetCircleTime(void) { m_dCircleTime = 0.0f; }
 
 	/**
 	* get the distance to attack at

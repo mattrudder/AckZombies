@@ -58,7 +58,7 @@ private:
 	//! Singleton stuff.
 	//!@{
 	CHighScoreTable(const CHighScoreTable&) {}
-	operator=(const CHighScoreTable&){}
+	CHighScoreTable& operator=(const CHighScoreTable&){ return *this; }
 
 	CHighScoreTable()
 	{

@@ -16,7 +16,9 @@
 * CPhyscisManager::CPhysicsManager()
 * @date Modified April 4, 2006
 */
-CPhysicsManager::CPhysicsManager(void) : m_oCheckCol(checkCollision, this), m_oCheckFrustum(checkFrustumCol, this)
+CPhysicsManager::CPhysicsManager(void)
+	: m_oCheckCol(&CPhysicsManager::checkCollision, this)
+	, m_oCheckFrustum(&CPhysicsManager::checkFrustumCol, this)
 {
 	// get the instance to the object manager
 	m_poObjManager = CObjectManager::getInstancePtr();

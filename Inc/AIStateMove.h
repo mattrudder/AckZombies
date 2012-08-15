@@ -29,7 +29,7 @@ class CAIStateMove : public CAIState, public CSingleton<CAIStateMove>
 	//!@{
 	CAIStateMove(void);
 	CAIStateMove(const CAIStateMove&) {}
-	operator=(const CAIStateMove&){}
+	CAIStateMove& operator=(const CAIStateMove&){ return *this; }
 	virtual ~CAIStateMove(void);
 	//!@}
 

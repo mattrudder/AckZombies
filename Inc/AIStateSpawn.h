@@ -29,7 +29,7 @@ class CAIStateSpawn : public CAIState, public CSingleton<CAIStateSpawn>
 	//!@{
 	CAIStateSpawn(void);
 	CAIStateSpawn(const CAIStateSpawn&) {}
-	operator=(const CAIStateSpawn&){}
+	CAIStateSpawn& operator=(const CAIStateSpawn&){ return *this; }
 	virtual ~CAIStateSpawn(void);
 	//!@}
 

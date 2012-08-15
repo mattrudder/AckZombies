@@ -55,7 +55,7 @@ protected:
 	//!@{
 	CResourceManager(void) {}
 	CResourceManager(const CResourceManager&) {}
-	operator=(const CResourceManager&){}
+	CResourceManager& operator=(const CResourceManager&) { return *this; }
 	virtual ~CResourceManager(void);
 	//!@}
 

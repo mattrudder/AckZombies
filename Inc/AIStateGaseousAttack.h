@@ -27,7 +27,7 @@ class CAIStateGaseousAttack : public CAIState, public CSingleton<CAIStateGaseous
 	//!@{
 	CAIStateGaseousAttack(void);
 	CAIStateGaseousAttack(const CAIStateGaseousAttack&) {}
-	operator=(const CAIStateGaseousAttack&){}
+	CAIStateGaseousAttack& operator=(const CAIStateGaseousAttack&){ return *this; }
 	virtual ~CAIStateGaseousAttack(void);
 	//!@}
 

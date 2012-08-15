@@ -19,10 +19,10 @@
 */
 CRenderGroup::CRenderGroup(DWORD dwMaxSolidSize, DWORD dwMaxTransSize) : 
 	m_oSolidsStatic(dwMaxSolidSize), m_oTransparentStatic(dwMaxTransSize),
-	m_oTransFunc(CRenderGroup::_renderSort_getViewDistance, this),
-	m_oSolidFunc(CRenderGroup::_renderSort_getMaterialID, this),
-	m_oSolidLessFunc(CRenderGroup::_renderSortLess_byMaterialID, this), 
-	m_oTransLessFunc(CRenderGroup::_renderSortLess_byViewDistance, this)
+	m_oTransFunc(&CRenderGroup::_renderSort_getViewDistance, this),
+	m_oSolidFunc(&CRenderGroup::_renderSort_getMaterialID, this),
+	m_oSolidLessFunc(&CRenderGroup::_renderSortLess_byMaterialID, this), 
+	m_oTransLessFunc(&CRenderGroup::_renderSortLess_byViewDistance, this)
 {
 }
 

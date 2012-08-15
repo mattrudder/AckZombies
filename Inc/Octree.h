@@ -51,7 +51,7 @@ protected:
 	//!@{
 	COctree(void);
 	COctree(const COctree&) {}
-	operator=(const COctree&){}
+	COctree& operator=(const COctree&) { return *this; }
 	virtual ~COctree(void);
 	//!@}
 

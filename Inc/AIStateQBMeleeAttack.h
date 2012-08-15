@@ -31,7 +31,7 @@ class CAIStateQBMeleeAttack : public CAIState, public CSingleton<CAIStateQBMelee
 	//!@{
 	CAIStateQBMeleeAttack(void);
 	CAIStateQBMeleeAttack(const CAIStateQBMeleeAttack&) {}
-	operator=(const CAIStateQBMeleeAttack&){}
+	CAIStateQBMeleeAttack& operator=(const CAIStateQBMeleeAttack&){ return *this; }
 	virtual ~CAIStateQBMeleeAttack(void);
 	//!@}
 
