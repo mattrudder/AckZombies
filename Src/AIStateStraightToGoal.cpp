@@ -37,7 +37,9 @@ void CAIStateStraightToGoal::update(CAIEntity* poAIEntity, CCharacter* poCharact
 	CAIManager* poAIManager = CAIManager::getInstancePtr();
 
 	D3DXVECTOR3 vVelocity;
-	D3DXVec3Subtract(&vVelocity, &poAIManager->findBestGoal(poCharacter)->getPosition(), &poCharacter->getPosition());
+	D3DXVECTOR3 goalPos = poAIManager->findBestGoal(poCharacter)->getPosition();
+	D3DXVECTOR3 charPos = poCharacter->getPosition();
+	D3DXVec3Subtract(&vVelocity, &goalPos, &charPos);
 	D3DXVec3Normalize(NULL, &vVelocity, &vVelocity);
 	
 	switch (poCharacter->getType())

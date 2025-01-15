@@ -1,10 +1,10 @@
-/**
+/*
 * @file Main.cpp
 * @author Matt Rudder
 * @date Created Mar 07, 2006
 *
 * Game Launchpoint
-*/ 
+*/
 
 // Visual Leak Detector (http://www.codeproject.com/tools/visualleakdetector.asp)
 //#include "vld.h"
@@ -29,3 +29,4 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 #endif
 	pKernel->deleteInstance();
 }
+

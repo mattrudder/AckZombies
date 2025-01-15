@@ -29,9 +29,9 @@ CLoggingSystem::CLoggingSystem(void)
 				sTitle;
 		sFmt *= 80;
 		sTitle.Format("%-69s %8s ", "Ack! Zombies - Cypher Edge Interactive",  dbuffer);
-		m_ofLogFile << sFmt << "\n ";
-		m_ofLogFile << sTitle << '\n';
-		m_ofLogFile << sFmt << '\n';
+		m_ofLogFile << sFmt.GetBuffer() << "\n ";
+		m_ofLogFile << sTitle.GetBuffer() << '\n';
+		m_ofLogFile << sFmt.GetBuffer() << '\n';
 
 	}
 	catch(...)
@@ -69,9 +69,9 @@ void CLoggingSystem::addEntry(unsigned int unLine, CString sText)
 	try
 	{
 		if(unLine != UINT_MAX)
-			m_ofLogFile << sPrefix << sText << '\n';
+			m_ofLogFile << sPrefix.GetBuffer() << sText.GetBuffer() << '\n';
 		else
-			m_ofLogFile << sPrefix << '(' << unLine << "): " << sText << '\n';
+			m_ofLogFile << sPrefix.GetBuffer() << '(' << unLine << "): " << sText.GetBuffer() << '\n';
 	}
 	catch(...)
 	{
@@ -96,7 +96,7 @@ void CLoggingSystem::beginSection(CString sFile, CString sFunc)
 	try
 	{
 		if(m_sCurFile.GetLength())
-			m_ofLogFile << "[" << m_sCurFile;
+			m_ofLogFile << "[" << m_sCurFile.GetBuffer();
 
 		if(sFunc.GetLength())
 		{
@@ -104,7 +104,7 @@ void CLoggingSystem::beginSection(CString sFile, CString sFunc)
 				m_ofLogFile << ", ";
 			else
 				m_ofLogFile << '[';
-			m_ofLogFile << sFunc << "]: \n";
+			m_ofLogFile << sFunc.GetBuffer() << "]: \n";
 		}	
 	}
 	catch (...)

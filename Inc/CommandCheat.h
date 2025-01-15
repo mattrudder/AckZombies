@@ -11,7 +11,7 @@
 
 // Local includes
 #include "Command.h"
-#include "hud.h"
+#include "Hud.h"
 #include "GameKernel.h"
 #include "ObjectManager.h"
 #include "Shotgun.h"
@@ -20,7 +20,7 @@
 #include "PotatoChainGun.h"
 #include "DesertEagle50.h"
 #include "HolyWaterBalloonCanon.h"
-#include "speedpack.h"
+#include "SpeedPack.h"
 
 /**
 * Command used to cheat it up somethin fierce
@@ -50,7 +50,7 @@ public:
 		}
 
 		CCommandParam* poParam = m_vParams.front();
-		if(((CString)(*poParam)) == CString("moosepants"))
+		if(poParam->toString() == CString("moosepants"))
 		{
 			CObjectManager::ObjectList players;
 			CObjectManager::getInstance().getObjects(OBJ_PLAYER, &players);
@@ -66,18 +66,18 @@ public:
 			givePlayersAllWeapons();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("iownfaces"))
+		else if (poParam->toString() == CString("iownfaces"))
 		{
 			givePlayersAllWeapons();
 			return true;
 		}
-		else if(((CString)(*poParam)) == CString("imnotreallyawesome"))
+		else if(poParam->toString() == CString("imnotreallyawesome"))
 		{
 			CMenuManager::getInstance().getHUD()->addToAwesomeMeter(0);
 			CMenuManager::getInstance().getHUD()->addToAwesomeMeter(MAX_AWESOME_TEX-1);
 			return true;
 		}
-		else if(((CString)(*poParam)) == CString("ludicrousspeed"))
+		else if(poParam->toString() == CString("ludicrousspeed"))
 		{
 			CObjectManager::ObjectList players;
 			CObjectManager::getInstance().getObjects(OBJ_PLAYER, &players);
@@ -94,7 +94,7 @@ public:
 				++playerIter;
 			}
 		}
-		else if(((CString)(*poParam)) == CString("needalillovin"))
+		else if(poParam->toString() == CString("needalillovin"))
 		{
 			CObjectManager::ObjectList players;
 			CObjectManager::getInstance().getObjects(OBJ_PLAYER, &players);
@@ -111,7 +111,7 @@ public:
 				++playerIter;
 			}
 		}
-		else if(((CString)(*poParam)) == CString("needalottalovin"))
+		else if(poParam->toString() == CString("needalottalovin"))
 		{
 			CObjectManager::ObjectList players;
 			CObjectManager::getInstance().getObjects(OBJ_PLAYER, &players);
@@ -129,7 +129,7 @@ public:
 				++playerIter;
 			}
 		}
-		else if(((CString)(*poParam)) == CString("skipobjective"))
+		else if(poParam->toString() == CString("skipobjective"))
 		{
 			CAIManager::getInstance().skipCurrentObjective();
 		}
@@ -166,9 +166,9 @@ public:
 		while (oPlayerIter != loPlayers.end())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
+			std::list<CBaseWeapon*> *pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_SHOTGUN) == OBJ_WEAPON_SHOTGUN)
@@ -190,7 +190,7 @@ public:
 			// if they already have the weapon, just give them the ammo for it.
 			pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_ROCKETLAUNCHER) == OBJ_WEAPON_ROCKETLAUNCHER)
@@ -213,7 +213,7 @@ public:
 			// if they already have the weapon, just give them the ammo for it.
 			pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_TRIPLESHOTGUN) == OBJ_WEAPON_TRIPLESHOTGUN)
@@ -236,7 +236,7 @@ public:
 			// if they already have the weapon, just give them the ammo for it.
 			pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_HOLYWATERCANNON) == OBJ_WEAPON_HOLYWATERCANNON)
@@ -259,7 +259,7 @@ public:
 			// if they already have the weapon, just give them the ammo for it.
 			pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_DEAGLE) == OBJ_WEAPON_DEAGLE)
@@ -282,7 +282,7 @@ public:
 			// if they already have the weapon, just give them the ammo for it.
 			pWeaponList = ((CPlayer*)(*oPlayerIter))->getWeaponList();
 			bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_POTATOGUN) == OBJ_WEAPON_POTATOGUN)

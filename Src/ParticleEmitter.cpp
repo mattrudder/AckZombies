@@ -35,7 +35,7 @@ CParticleEmitter::~CParticleEmitter(void)
 */
 CObject* CParticleEmitter::create(void)
 {
-	return new CParticleEmitter;
+	return static_cast<CObject*>(new CParticleEmitter);
 }
 
 void CParticleEmitter::play(bool bReset)

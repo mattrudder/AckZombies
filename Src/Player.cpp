@@ -115,7 +115,7 @@ void CPlayer::enterAwesomeTime()
 	
 	// give the player the desert eagle.
 	// if he already has the desert eagle, give him 10 more bullets
-	list<CBaseWeapon*>::iterator weapIter = m_WeaponInventory.begin();
+	auto weapIter = m_WeaponInventory.begin();
 	while(weapIter != m_WeaponInventory.end())
 	{
 		if((*weapIter)->getType() == OBJ_WEAPON_DEAGLE)
@@ -240,7 +240,7 @@ void CPlayer::addGrenade(CGrenadeWeapon *poNewGrenade)
 void CPlayer::dropWeapon(CBaseWeapon *poDropGun)
 {
 	// loop through all the weapons in the inventory
-	list<CBaseWeapon*>::iterator weapIter = m_WeaponInventory.begin();
+	auto weapIter = m_WeaponInventory.begin();
 	while(weapIter != m_WeaponInventory.end())
 	{
 		// if the weapon is in the inventory, remove it from the list
@@ -814,7 +814,8 @@ void CPlayer::update()
 		// check the velocity against the orientation of the player to find which animation to play. 
 		// get the x axis of the orientation (the right vector out of the actor matrix without the scale)
 		// get the angle between the velocity and the right vector from the actor matrix
-		float fTheta = acosf(D3DXVec3Dot(&D3DXVECTOR3(m_ActorMatrix._11/m_vScale.x, 0.0f, m_ActorMatrix._13/m_vScale.z), &xVelocity));
+		auto tmp = D3DXVECTOR3(m_ActorMatrix._11 / m_vScale.x, 0.0f, m_ActorMatrix._13 / m_vScale.z);
+		float fTheta = acosf(D3DXVec3Dot(&tmp, &xVelocity));
 
 		// set the velocity based on the angle (0 - pi)
 		// (0 - pi/4 == Strafe right) 
@@ -1331,7 +1332,9 @@ void CPlayer::checkTargeted(CObject* poObject)
 		// test for all the collisions
 		D3DXVECTOR3 Spread[3]; // the spread of the shotgun made into a triangle
 		float fLength = 20.0f; // Max length of distance to shoot
-		float fAngle = acosf(D3DXVec3Dot(&getOrientation(), &CCamera::getInstance().getCameraRight()));
+		auto orient = getOrientation();
+		auto right = CCamera::getInstance().getCameraRight();
+		float fAngle = acosf(D3DXVec3Dot(&orient, &right));
 
 		Spread[0].x = vPoint.x + cosf(fAngle - M_PI/12.0f) * fLength;
 		Spread[0].y = vPoint.y;

@@ -405,9 +405,6 @@
     <ClInclude Include="Inc\CommandCheat.h">
       <Filter>Console\Commands\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Src\CommandDrawPlacement.h">
-      <Filter>Console\Commands\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Inc\CommandExportPlacement.h">
       <Filter>Console\Commands\Header Files</Filter>
     </ClInclude>
@@ -635,6 +632,9 @@
     </ClInclude>
     <ClInclude Include="Inc\SpeedPack.h">
       <Filter>Pickups\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inc\CommandDrawPlacement.h">
+      <Filter>Console\Commands\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

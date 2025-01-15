@@ -37,7 +37,7 @@ CMenuButton::~CMenuButton()
 */
 CMenuButton::CMenuButton(int nPosX, int nPosY, int nWidth, int nHeight, const char *szTextureBackground, const char *szTextureBackgroundHover,
 						 int nWidthTex, 
-						 int nHeightTex, bool bCheckInput, CMenu* poParentMenu, char *szFontFace, int nFontWidth,
+						 int nHeightTex, bool bCheckInput, CMenu* poParentMenu, const char *szFontFace, int nFontWidth,
 						 int nFontHeight, char *szText)
 {
 	// convert the positions into coordinates so that 0,0 is at the top left of the screen.

@@ -53,8 +53,8 @@ CResourceManager::~CResourceManager(void)
 #ifdef _DEBUG
 		if(pRes && pRes->m_ulRefCount > 0)
 		{
-			Debug << "WARNING: Resource \"" << pRes->toString()
-				  << "\" has " << pRes->m_ulRefCount << " reference(s) remaining!" << endl;
+			Debug << "WARNING: Resource \"" << pRes->toString().GetBuffer()
+				  << "\" has " << pRes->m_ulRefCount << " reference(s) remaining!" << std::endl;
 		}
 #endif
 
@@ -81,8 +81,8 @@ void CResourceManager::deAllocAllResources(void)
 #ifdef _DEBUG
 		if(pRes && pRes->m_ulRefCount > 0)
 		{
-			Debug << "WARNING: Resource \"" << pRes->toString()
-				  << "\" has " << pRes->m_ulRefCount << " reference(s) remaining!" << endl;
+			Debug << "WARNING: Resource \"" << pRes->toString().GetBuffer()
+				  << "\" has " << pRes->m_ulRefCount << " reference(s) remaining!" << std::endl;
 		}
 #endif
 

@@ -46,11 +46,11 @@ public:
 
 	EEffectFlags getElemType(const XMLCh* szLocalName);
 	void processAttributes(EEffectFlags eType, const Attributes& rAttributes);
-	CParticleEffect::EBlendOp getBlendOp(CString& sBlend);
-	CParticleEffect::EShape getShape(CString& sShape);
-	CParticleEffect::ESpawnMode getSpawnMode(CString& sMode);
-	CParticleAttribute::EAttributeType getAttribType(CString& sType);
-	CParticleAttribute::EInterpolationType getInterpMethod(CString& sType);
+	CParticleEffect::EBlendOp getBlendOp(const CString& sBlend);
+	CParticleEffect::EShape getShape(const CString& sShape);
+	CParticleEffect::ESpawnMode getSpawnMode(const CString& sMode);
+	CParticleAttribute::EAttributeType getAttribType(const CString& sType);
+	CParticleAttribute::EInterpolationType getInterpMethod(const CString& sType);
 
 	// -----------------------------------------------------------------------
 	//  Handlers for the SAX ContentHandler interface

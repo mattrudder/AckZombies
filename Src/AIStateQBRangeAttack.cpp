@@ -38,7 +38,9 @@ void CAIStateQBRangeAttack::update(CAIEntity* poAIEntity, CCharacter* poCharacte
 	// look at the player
 	D3DXVECTOR3 vAtGoal;
 	CAINode* poGoalNode = CAIManager::getInstancePtr()->findBestGoal(poCharacter);
-	D3DXVec3Subtract(&vAtGoal, &poGoalNode->getPosition(), &poCharacter->getPosition());
+	auto goalPos = poGoalNode->getPosition();
+	auto charPos = poCharacter->getPosition();
+	D3DXVec3Subtract(&vAtGoal, &goalPos, &charPos);
 	D3DXVec3Normalize(&vAtGoal, &vAtGoal);
 	poCharacter->setOrientation(vAtGoal);
 
@@ -51,7 +53,7 @@ void CAIStateQBRangeAttack::update(CAIEntity* poAIEntity, CCharacter* poCharacte
 	vAtGoal = poCharacter->getBV().centerPt;
 	vAtGoal.y += 10.0f;
 	poBall->setPosition(vAtGoal);
-	D3DXVec3Subtract(&vAtGoal, &poGoalNode->getPosition(), &vAtGoal);
+	D3DXVec3Subtract(&vAtGoal, &goalPos, &vAtGoal);
 	D3DXVec3Normalize(NULL, &vAtGoal, &vAtGoal);
 	poBall->setOrientation(vAtGoal);
 	poBall->setVelocity(*D3DXVec3Scale(&vAtGoal, &vAtGoal, 50.0f));

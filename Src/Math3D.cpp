@@ -90,18 +90,21 @@ int checkCol_PlaneAABB(const SAABB &tBox, const D3DXPLANE &plane)
 	D3DXVECTOR3 vPosExtents = tBox.max - vBoxCenter;
 
 	// get the projection radius of the box onto a line to the plane
-	float fRadius = vPosExtents.x*abs(plane.a) + vPosExtents.y*abs(plane.b) + vPosExtents.z*abs(plane.c);
+	float fRadius = vPosExtents.x*fabs(plane.a) + vPosExtents.y*fabs(plane.b) + vPosExtents.z*fabs(plane.c);
 	// get the distance from the center of the box from the plane
-	float fDist = D3DXVec3Dot(&D3DXVECTOR3(plane.a,plane.b,plane.c), &vBoxCenter) - plane.d;
+	auto tmp = D3DXVECTOR3(plane.a, plane.b, plane.c);
+	float fDist = D3DXVec3Dot(&tmp, &vBoxCenter) - plane.d;
 
 	// see if the box collides
-	if(abs(fDist) <= fRadius)
+	if(fabs(fDist) <= fRadius)
 		return 0;
 
 	// the box doesn't collide, check what side of the plane it's on
 	// find a point on the plane
-	D3DXVECTOR3 ptOnPlane = D3DXVECTOR3(plane.a,plane.b,plane.c) * plane.d;
-	fDist = D3DXVec3Dot(&(ptOnPlane - vBoxCenter), &D3DXVECTOR3(plane.a,plane.b,plane.c)); 
+	auto planeAbc = D3DXVECTOR3(plane.a, plane.b, plane.c);
+	D3DXVECTOR3 ptOnPlane = planeAbc * plane.d;
+	auto tmp2 = ptOnPlane - vBoxCenter;
+	fDist = D3DXVec3Dot(&tmp2, &planeAbc);
 
 	if(fDist < 0)
 		return 1;
@@ -116,13 +119,14 @@ int checkCol_PlaneAABB(const SAABB &tBox, const D3DXPLANE &plane)
 int checkCol_PlaneSphere(D3DXVECTOR3 *pPtOfCol, const SSphere &tSphere, const D3DXPLANE &plane)
 {
 	// get the distance from the plane
-	D3DXVECTOR3 vec = D3DXVECTOR3(plane.a, plane.b, plane.c) * plane.d - tSphere.centerPt;
-	float fDistance = D3DXVec3Dot(&vec, &D3DXVECTOR3(plane.a, plane.b, plane.c));
+	auto planeAbc = D3DXVECTOR3(plane.a, plane.b, plane.c);
+	D3DXVECTOR3 vec = planeAbc * plane.d - tSphere.centerPt;
+	float fDistance = D3DXVec3Dot(&vec, &planeAbc);
 
 	if(pPtOfCol)
 		*pPtOfCol = tSphere.centerPt + D3DXVECTOR3(plane.a, plane.b, plane.c)*fDistance;
 
-	if(abs(fDistance) <= tSphere.fRadius)
+	if(fabs(fDistance) <= tSphere.fRadius)
 		return 0;
 		
 	// if there's no intersection, return on positive or negative side of plane
@@ -351,24 +355,24 @@ bool checkCol_SegmentAABB(const D3DXVECTOR3 &PtOne, const D3DXVECTOR3 &PtTwo, co
 
 	// use world coordinate axes as the separating axes
 	// test the x
-	float fADX = abs(segExtent.x);
-	if(abs(segMidpt.x) > boxExtent.x+fADX) return false;
+	float fADX = fabs(segExtent.x);
+	if(fabs(segMidpt.x) > boxExtent.x+fADX) return false;
 	// test the y
-	float fADY = abs(segExtent.y);
-	if(abs(segMidpt.y) > boxExtent.y+fADY) return false;
+	float fADY = fabs(segExtent.y);
+	if(fabs(segMidpt.y) > boxExtent.y+fADY) return false;
 	// test the z
-	float fADZ = abs(segExtent.z);
-	if(abs(segMidpt.z) > boxExtent.z+fADZ) return false;
+	float fADZ = fabs(segExtent.z);
+	if(fabs(segMidpt.z) > boxExtent.z+fADZ) return false;
 
 	// add epsilon to reduce floating point error calculations
 	fADX += FLT_EPSILON; fADY += FLT_EPSILON; fADZ += FLT_EPSILON;
 
 	// try comparing the cross product of segment direction and separating axes
-	if(abs(segMidpt.y*segExtent.z - segMidpt.z*segExtent.y) > boxExtent.y*fADZ + boxExtent.z*fADY)
+	if(fabs(segMidpt.y*segExtent.z - segMidpt.z*segExtent.y) > boxExtent.y*fADZ + boxExtent.z*fADY)
 		return false;
-	if(abs(segMidpt.z*segExtent.x - segMidpt.x*segExtent.z) > boxExtent.x*fADZ + boxExtent.z*fADX)
+	if(fabs(segMidpt.z*segExtent.x - segMidpt.x*segExtent.z) > boxExtent.x*fADZ + boxExtent.z*fADX)
 		return false;
-	if(abs(segMidpt.x*segExtent.y - segMidpt.y*segExtent.x) > boxExtent.x*fADY + boxExtent.y*fADX)
+	if(fabs(segMidpt.x*segExtent.y - segMidpt.y*segExtent.x) > boxExtent.x*fADY + boxExtent.y*fADX)
 		return false;
 
 	// if there's no separating axes, then the segment must intersect
@@ -389,7 +393,7 @@ bool checkCol_RayAABB(const D3DXVECTOR3 &point, const D3DXVECTOR3 &dir, const SA
 	for(int i = 0; i < 3; ++i)
 	{
 		// check if the ray is parallel to the AABB
-		if(abs(dir[i]) < FLT_EPSILON)
+		if(fabs(dir[i]) < FLT_EPSILON)
 		{
 			if(point[i] < tBox.min[i] || point[i] > tBox.max[i])
 				return false;

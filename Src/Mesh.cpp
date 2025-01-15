@@ -141,15 +141,15 @@ void CMesh::onDeviceRestore(void)
 		LPD3DXBUFFER pBufAdjacency, pBufMaterials, pBufEffects;
 		DWORD dwEffects;
 		LPD3DXMESH pTempMesh = NULL;
-		Log << "Loading CMesh '" << m_sFilename.GetBuffer() << "':" << endl;
+		Log << "Loading CMesh '" << m_sFilename.GetBuffer() << "':" << std::endl;
 		HRESULT hr = D3DXLoadMeshFromX(m_sFilename, 0, pDev, &pBufAdjacency, 
 			&pBufMaterials, &pBufEffects, &m_dwSubsets, &pTempMesh);
 		dwEffects = pBufEffects->GetBufferSize() / sizeof(D3DXEFFECTINSTANCE);
-		Log << "Mesh loaded: " << toString().GetBuffer() << endl;
+		Log << "Mesh loaded: " << toString().GetBuffer() << std::endl;
 
 
 		// TESTING: Get decl format
-		Debug << "Mesh " << m_sFilename.GetBuffer() << " : " << endl;
+		Debug << "Mesh " << m_sFilename.GetBuffer() << " : " << std::endl;
 		D3DVERTEXELEMENT9 oElem[MAX_FVF_DECL_SIZE];
 		pTempMesh->GetDeclaration(oElem);
 		D3DVERTEXELEMENT9* pElem = oElem;
@@ -160,7 +160,7 @@ void CMesh::onDeviceRestore(void)
 				(int)pElem->Stream, (int)pElem->Offset,
 				szDeclTypes[pElem->Type], szMethodTypes[pElem->Method], szUsageTypes[pElem->Usage],
 				(int)pElem->UsageIndex);
-			Debug << sFormat.GetBuffer() << endl;
+			Debug << sFormat.GetBuffer() << std::endl;
 			++pElem;
 		}
 
@@ -170,7 +170,7 @@ void CMesh::onDeviceRestore(void)
 		else
 			COM_RELEASE(pTempMesh);
 
-		Debug << "Mesh Post Clone " << m_sFilename.GetBuffer() << " : " << endl;
+		Debug << "Mesh Post Clone " << m_sFilename.GetBuffer() << " : " << std::endl;
 		oElem[MAX_FVF_DECL_SIZE];
 		m_poMesh->GetDeclaration(oElem);
 		pElem = oElem;
@@ -181,7 +181,7 @@ void CMesh::onDeviceRestore(void)
 				(int)pElem->Stream, (int)pElem->Offset,
 				szDeclTypes[pElem->Type], szMethodTypes[pElem->Method], szUsageTypes[pElem->Usage],
 				(int)pElem->UsageIndex);
-			Debug << sFormat.GetBuffer() << endl;
+			Debug << sFormat.GetBuffer() << std::endl;
 			++pElem;
 		}
 
@@ -199,7 +199,7 @@ void CMesh::onDeviceRestore(void)
 		//	(const DWORD*)pBufAdjacency->GetBufferPointer(), NULL, NULL, NULL);
 
 		// Iterate materials/effects
-		Log << endl;
+		Log << std::endl;
 		CString sTabs;
 
 		LPD3DXMATERIAL pMaterials = (D3DXMATERIAL*)pBufMaterials->GetBufferPointer();
@@ -332,7 +332,7 @@ void CMesh::drawSubset(DWORD dwSubset)
 	if(FAILED(hr))
 	{
 		Debug << "DEBUG: drawSubset failed on " << m_sFilename.GetBuffer()
-			<< " drawing subset " << dwSubset << endl;
+			<< " drawing subset " << dwSubset << std::endl;
 
 		pMat->end();
 		return;

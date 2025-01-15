@@ -7,7 +7,7 @@
 */
 
 // Local includes
-#include "Spotlight.h"
+#include "SpotLight.h"
 
 // Engine includes
 #include "ObjectTypes.h"

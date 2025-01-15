@@ -33,6 +33,8 @@ public:
 	operator CString(void) { return m_sData; }
 	operator const char*(void) { return (const char*)m_sData; }
 	operator const wchar_t*(void) { return (const wchar_t*)m_sData; }
+
+	CString toString(void) { return m_sData; }
 };
 
 #endif //_COMMANDPARAM_H_

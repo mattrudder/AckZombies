@@ -79,7 +79,7 @@ public:
 	*
 	* @date Created June 2, 2006
 	*/
-	void CResourceManager::deAllocAllResources(void);
+	void deAllocAllResources(void);
 
 	/**
 	* Notify the resource manager about the types of available resources in 

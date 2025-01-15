@@ -11,8 +11,8 @@
 // local includes/libraries
 #include "Actor.h"
 #include "TickTimer.h"
-#include "Math3d.h"
-#include "particleemitter.h"
+#include "Math3D.h"
+#include "ParticleEmitter.h"
 
 // system includes/libraries
 
@@ -42,7 +42,7 @@ public:
 
 	//! Mutators
 	void setAnimationTime(float fTime) { m_fAnimationTime = fTime; }
-	void setTempVel(D3DXVECTOR3 &vel) { m_vTempVel = vel; }
+	void setTempVel(const D3DXVECTOR3 &vel) { m_vTempVel = vel; }
 	//! Accessors
 	float getAnimationTime(void) { return m_fAnimationTime; }
 	D3DXVECTOR3 getTempVel(void) { return m_vTempVel; }
@@ -96,7 +96,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CCharacter;
+		return static_cast<CObject*>(new CCharacter);
 	}
 
 	/**

@@ -58,11 +58,15 @@ void CAIStatePathFollow::followPath(CAIEntity* poAIEntity, CCharacter* poCharact
 	}
 
 	// if it isn't moving to a node yet, start the movement
-	if (memcmp(&m_vVelocity, &poCharacter->getVelocity(), sizeof(D3DXVECTOR3)) == 0)
+	auto vel = poCharacter->getVelocity();
+	auto pos = poCharacter->getBV().centerPt;
+	auto pathPos = PATH_BACK->getPosition();
+	if (memcmp(&m_vVelocity, &vel, sizeof(D3DXVECTOR3)) == 0)
 	{
 		// get vector from current position to next node
 		D3DXVECTOR3 vNextNode;
-		D3DXVec3Subtract(&vNextNode, &PATH_BACK->getPosition(), &poCharacter->getBV().centerPt);
+		
+		D3DXVec3Subtract(&vNextNode, &pathPos, &pos);
 		D3DXVec3Normalize(NULL, &vNextNode, &vNextNode);
 
 		// scale by speed
@@ -73,7 +77,7 @@ void CAIStatePathFollow::followPath(CAIEntity* poAIEntity, CCharacter* poCharact
 		poCharacter->setVelocity(vNextNode);
 	}
 	// check to see if we should target to the next node
-	else if (computeDistanceSquared(poCharacter->getBV().centerPt, PATH_BACK->getPosition()) < (PATH_BACK->m_fRadius * PATH_BACK->m_fRadius))
+	else if (computeDistanceSquared(pos, pathPos) < (PATH_BACK->m_fRadius * PATH_BACK->m_fRadius))
 	{
 		// we need to go to the next node
 		poAIEntity->m_loPath.pop_back();
@@ -94,9 +98,9 @@ void CAIStatePathFollow::followPath(CAIEntity* poAIEntity, CCharacter* poCharact
 
 		D3DXVECTOR3 vNextNode, vGoalNode;
 		// get vector from entity to next node
-		D3DXVec3Subtract(&vNextNode, &PATH_BACK->getPosition(), &poCharacter->getBV().centerPt);
+		D3DXVec3Subtract(&vNextNode, &pathPos, &pos);
 		// get vector from entity to goal node
-		D3DXVec3Subtract(&vGoalNode, &PATH_FRONT->getPosition(), &poCharacter->getBV().centerPt);
+		D3DXVec3Subtract(&vGoalNode, &pathPos, &pos);
 
 		D3DXVec3Normalize(NULL, &vGoalNode, &vGoalNode);
 
@@ -107,7 +111,7 @@ void CAIStatePathFollow::followPath(CAIEntity* poAIEntity, CCharacter* poCharact
 		// scale vector from entity to goal node by the projection value
 		D3DXVec3Scale(&vGoalNode, &vGoalNode, fProjection);
 		// add vector from entity to goal node to get point closest to next node
-		D3DXVec3Add(&vGoalNode, &poCharacter->getBV().centerPt, &vGoalNode);
+		D3DXVec3Add(&vGoalNode, &pos, &vGoalNode);
 		// get the vector from the next node to the closest point
 		D3DXVec3Subtract(&vGoalNode, &vGoalNode, &vNextNode);
 
@@ -125,7 +129,7 @@ void CAIStatePathFollow::followPath(CAIEntity* poAIEntity, CCharacter* poCharact
 		// add vector from next node to point within radius
 		D3DXVec3Add(&vNextNode, &vNextNode, &vGoalNode);
 		// get vector from entity to point within radius to be new velocity
-		D3DXVec3Subtract(&vGoalNode, &vNextNode, &poCharacter->getBV().centerPt);
+		D3DXVec3Subtract(&vGoalNode, &vNextNode, &pos);
 
 		// normalize and scale by speed
 		poCharacter->setOrientation(vGoalNode);

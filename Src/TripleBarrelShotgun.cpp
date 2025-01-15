@@ -69,7 +69,9 @@ bool CTripleBarrelShotgunWeapon::fireWeapon()
 		float fEnemyDist;
 		D3DXVECTOR3 Spread[3]; // the spread of the shotgun made into a triangle
 		float fLength = 20.0f; // Max length of distance to shoot
-		float fAngle = acosf(D3DXVec3Dot(&m_poCharacter->getOrientation(), &CCamera::getInstance().getCameraRight()));
+		D3DXVECTOR3 orientation = m_poCharacter->getOrientation();
+		D3DXVECTOR3& cameraRight = CCamera::getInstance().getCameraRight();
+		float fAngle = acosf(D3DXVec3Dot(&orientation, &cameraRight));
 		D3DXVECTOR3 pos;
 		if (!getPlayer()->getWeaponActorPos(&pos))
 			pos = m_poCharacter->getBV().centerPt;

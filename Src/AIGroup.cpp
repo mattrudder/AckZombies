@@ -152,9 +152,11 @@ void CAIGroup::disband(bool bDisperse)
 		calculateAvgPos();
 		poGoalNode = CAIManager::getInstancePtr()->findBestGoal(*oEnemyIter);
 		// calculate vectors to perform a halfspace tests to determine members' position in the group
-		D3DXVec3Subtract(&vFrontBack, &poGoalNode->getPosition(), &m_vAvgPos);
+		auto pos = poGoalNode->getPosition();
+		D3DXVec3Subtract(&vFrontBack, &pos, &m_vAvgPos);
 		D3DXVec3Normalize(NULL, &vFrontBack, &vFrontBack);
-		D3DXVec3Cross(&vLeftRight, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), &vLeftRight);
+		auto up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
+		D3DXVec3Cross(&vLeftRight, &up, &vLeftRight);
 		D3DXVec3Normalize(NULL, &vLeftRight, &vLeftRight);
 	}
 
@@ -166,7 +168,8 @@ void CAIGroup::disband(bool bDisperse)
 		{
 			if ((*oEnemyIter)->getType() == OBJ_ENEMY_ZOMBIECITIZEN)
 			{
-				D3DXVec3Subtract(&vTemp, &ENEMY_PTR(oEnemyIter)->getBV().centerPt, &m_vAvgPos);
+				auto centerPt = ENEMY_PTR(oEnemyIter)->getBV().centerPt;
+				D3DXVec3Subtract(&vTemp, &centerPt, &m_vAvgPos);
 				D3DXVec3Normalize(NULL, &vTemp, &vTemp);
 				fDot = D3DXVec3Dot(&vTemp, &vFrontBack);
 

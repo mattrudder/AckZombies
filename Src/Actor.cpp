@@ -142,7 +142,7 @@ void CActor::setPosition(const D3DXVECTOR3 &vPos)
 * CActor::setPosition
 * @date Modified Mar 07, 2006
 */
-void CActor::setOrientation(D3DXVECTOR3 &vOrient)
+void CActor::setOrientation(D3DXVECTOR3 vOrient)
 {
 	// make sure the length of the orientation is about one
 	float fLength= D3DXVec3Dot(&vOrient, &vOrient);
@@ -235,7 +235,7 @@ void CActor::setScale(const D3DXVECTOR3 &vScale)
 * CActor::setActorMatrix()
 * @date Modified May 08, 2006
 */
-void CActor::setActorMatrix(D3DXVECTOR3 &vRot, const D3DXVECTOR3 &vTrans, const D3DXVECTOR3 &vScale)
+void CActor::setActorMatrix(const D3DXVECTOR3 &vRot, const D3DXVECTOR3 &vTrans, const D3DXVECTOR3 &vScale)
 {
 	// set the rotation and the scale
 	m_vScale = vScale;

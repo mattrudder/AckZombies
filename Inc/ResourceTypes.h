@@ -19,6 +19,7 @@ enum EResourceType
 	RES_ANIMATEDMESH,
 	RES_SOUND,
 	RES_PARTICLEEMITTER,
+	// RES_SHADER,
 	RES_MAX
 };
 
@@ -27,8 +28,9 @@ enum EResourceType
 #include "Mesh.h"
 #include "AnimatedMesh.h"
 #include "BitmapFont.h"
-#include "sound.h"
+#include "Sound.h"
 #include "ParticleSystem.h"
+// #include "Shader.h"
 
 
 #endif //_RESOURCETYPES_H_

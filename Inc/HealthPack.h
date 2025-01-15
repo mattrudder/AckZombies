@@ -8,8 +8,8 @@
 #ifndef _HEALTHPACK_H_
 #define _HEALTHPACK_H_
 
-#include "actor.h"
-#include "player.h"
+#include "Actor.h"
+#include "Player.h"
 
 //! the types of health pack within the game
 enum EHealthPackType
@@ -66,7 +66,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CHealthPack;
+		return static_cast<CObject*>(new CHealthPack);
 	}
 };
 

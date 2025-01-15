@@ -57,7 +57,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CPotato;
+		return static_cast<CObject*>(new CPotato);
 	}
 };
 

@@ -56,7 +56,8 @@ void CAIStateMove::enter(CAIEntity* poAIEntity, CCharacter* poCharacter)
 {
 	D3DXVECTOR3 vVelocity(0.0f, 0.0f, 0.0f);
 
-	D3DXVec3Normalize(NULL, &vVelocity, &poCharacter->getVelocity());
+	auto velChar = poCharacter->getVelocity();
+	D3DXVec3Normalize(NULL, &vVelocity, &velChar);
 	poCharacter->setOrientation(vVelocity);
 
 	// scale the unit velocity based on the entity's type

@@ -181,7 +181,7 @@ public:
 	* @param vList A vector to fill out with strings.
 	* @param cDelim The character to delimit the string by.
 	*/
-	void ToList(std::vector<CStringW>& vList, wchar_t* szDelim = L",;\n\t") const;
+	void ToList(std::vector<CStringW>& vList, const wchar_t* szDelim = L",;\n\t") const;
 
 	/**
 	* String concatenation.

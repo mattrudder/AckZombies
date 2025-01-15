@@ -93,7 +93,7 @@ public:
 	* @param[in]	oSphere		The sphere to test.
 	* @return Identifier noting the type of containment, if any.
 	*/
-	EFrustumTest containsSphere(SSphere& oSphere);
+	EFrustumTest containsSphere(const SSphere& oSphere);
 
 	void renderFrustum(D3DXCOLOR dwColor);
 };

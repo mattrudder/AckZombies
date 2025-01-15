@@ -70,7 +70,7 @@ public:
 		CActorSpawnTrigger* poSpawn = new CActorSpawnTrigger;
 		poSpawn->setMesh(NULL/*(CMesh*)CResourceManager::getInstance().loadResource(RES_MESH, "ring.x")*/);
 		poSpawn->deactivate();
-		return poSpawn;
+		return static_cast<CObject*>(poSpawn);
 	}
 };
 #endif /*_ACTORSPAWNTRIGGER_H_*/

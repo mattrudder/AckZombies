@@ -155,7 +155,7 @@ size_t CStringW::GetLength(void) const
 CStringW CStringW::Left(size_t nChar) const
 {
 	if(nChar < m_strTheString.length())
-		return CStringA(m_strTheString.substr(0, nChar).c_str());
+		return CStringW(m_strTheString.substr(0, nChar).c_str());
 	else
 		return *this;
 }
@@ -167,7 +167,7 @@ CStringW CStringW::Left(size_t nChar) const
 CStringW CStringW::Right(size_t nChar) const
 {
 	if(nChar < m_strTheString.length())
-		return CStringA(m_strTheString.substr(m_strTheString.length() - nChar, nChar).c_str());
+		return CStringW(m_strTheString.substr(m_strTheString.length() - nChar, nChar).c_str());
 	else
 		return *this;
 }
@@ -179,12 +179,12 @@ CStringW CStringW::Right(size_t nChar) const
 CStringW CStringW::Mid(size_t nStart, size_t nLen) const
 {
 	if(nStart >= m_strTheString.length())
-		return CStringA("");
+		return CStringW("");
 
 	if(nStart == 0 && nLen == m_strTheString.length())
 		return *this;
 	else
-		return CStringA(m_strTheString.substr(nStart, nLen).c_str());
+		return CStringW(m_strTheString.substr(nStart, nLen).c_str());
 }
 
 /**
@@ -285,7 +285,7 @@ unsigned long CStringW::ToUlongFromHex(void) const
 * CStringW::ToList
 * @date Modified Mar 02, 2006
 */
-void CStringW::ToList(std::vector<CStringW>& vList, wchar_t* szDelim) const
+void CStringW::ToList(std::vector<CStringW>& vList, const wchar_t* szDelim) const
 {
 	// Clear the incoming vector.
 	vList.clear();
@@ -296,11 +296,12 @@ void CStringW::ToList(std::vector<CStringW>& vList, wchar_t* szDelim) const
 	wcsncpy(szString, m_strTheString.c_str(), m_strTheString.length());
 
 	// Split up the string.
-	wchar_t* pTok = wcstok(szString, szDelim);
+	wchar_t* buffer;
+	wchar_t* pTok = std::wcstok(szString, szDelim, &buffer);
 	while(pTok)
 	{
 		vList.push_back(CStringW(pTok));
-		pTok = wcstok(NULL, szDelim);
+		pTok = std::wcstok(NULL, szDelim, &buffer);
 	}
 
 	// Cleanup
@@ -458,7 +459,8 @@ CStringW & CStringW::operator*=(const unsigned int uiTimes)
 */
 bool CStringW::operator==(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) == 0;
+	
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) == 0;
 }
 
 /**
@@ -467,7 +469,7 @@ bool CStringW::operator==(const CStringW& str) const
 */
 bool CStringW::operator!=(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) != 0;
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) != 0;
 }
 
 /**
@@ -476,7 +478,7 @@ bool CStringW::operator!=(const CStringW& str) const
 */
 bool CStringW::operator<(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) < 0;
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) < 0;
 }
 
 /**
@@ -485,7 +487,7 @@ bool CStringW::operator<(const CStringW& str) const
 */
 bool CStringW::operator<=(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) <= 0;
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) <= 0;
 }
 
 /**
@@ -494,7 +496,7 @@ bool CStringW::operator<=(const CStringW& str) const
 */
 bool CStringW::operator>(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) > 0;
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) > 0;
 }
 
 /**
@@ -503,7 +505,7 @@ bool CStringW::operator>(const CStringW& str) const
 */
 bool CStringW::operator>=(const CStringW& str) const
 {
-	return wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) >= 0;
+	return _wcsicmp(m_strTheString.c_str(), str.m_strTheString.c_str()) >= 0;
 }
 
 /**

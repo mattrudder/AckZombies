@@ -60,7 +60,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CRocket;
+		return static_cast<CObject*>(new CRocket);
 	}
 
 	/**

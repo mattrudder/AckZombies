@@ -218,7 +218,9 @@ void CAIManager::createNodeLinks(void)
 			if (NODE_PTR(PrimaryIter) == NODE_PTR(SecondIter))
 				continue;
 
-			D3DXVec3Subtract(&vDirection, &NODE_PTR(SecondIter)->getPosition(), &NODE_PTR(PrimaryIter)->getPosition());
+			auto pos1 = NODE_PTR(PrimaryIter)->getPosition();
+			auto pos2 = NODE_PTR(SecondIter)->getPosition();
+			D3DXVec3Subtract(&vDirection, &pos2, &pos1);
 			D3DXVec3Normalize(&fLength, &vDirection, &vDirection);
 
 			// if the node is too far away, don't even try to link to it
@@ -283,7 +285,9 @@ void CAIManager::linkNode(CAINode* poNode)
 		if (poNode == NODE_PTR(oNodeIter))
 			continue;
 
-		D3DXVec3Subtract(&vDirection, &NODE_PTR(oNodeIter)->getPosition(), &poNode->getPosition());
+		auto nodePos = poNode->getPosition();
+		auto nodeIterPos = NODE_PTR(oNodeIter)->getPosition();
+		D3DXVec3Subtract(&vDirection, &nodeIterPos, &nodePos);
 		D3DXVec3Normalize(&fLength, &vDirection, &vDirection);
 
 		// if the node is too far away, don't even try to link to it
@@ -978,7 +982,9 @@ float CAIManager::getDistanceToObjective(D3DXVECTOR3* vDirection)
 	CObjectManager::ObjectList loPlayers;
 	poObjectManager->getObjects(OBJ_PLAYER, &loPlayers);
 
-	D3DXVec3Subtract(vDirection, &m_poCurrentObjective->getPosition(), &((CPlayer*)loPlayers.front())->getPosition());
+	auto objPos = m_poCurrentObjective->getPosition();
+	auto playerPos = ((CPlayer*)loPlayers.front())->getPosition();
+	D3DXVec3Subtract(vDirection, &objPos, &playerPos);
 	vDirection->y = 0.0f;
 
 	float fLength = 0.0f;

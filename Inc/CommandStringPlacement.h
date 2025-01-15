@@ -52,7 +52,7 @@ public:
 		std::vector<CCommandParam*>::iterator oParamIter = m_vParams.begin();
 		while (oParamIter != m_vParams.end())
 		{
-			string += ((CString)(*(*oParamIter)));
+			string += (*oParamIter)->toString();
 			string += CString(" ");
 			oParamIter++;
 		}

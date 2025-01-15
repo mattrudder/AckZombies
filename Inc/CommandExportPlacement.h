@@ -48,32 +48,32 @@ public:
 		}
 
 		CCommandParam* poParam = m_vParams.front();
-		if (((CString)(*poParam)) == CString("Nodes"))
+		if (poParam->toString() == CString("Nodes"))
 		{
 			CPlacementState::getInstancePtr()->exportNodes();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("SpawnTriggers"))
+		else if (poParam->toString() == CString("SpawnTriggers"))
 		{
 			CPlacementState::getInstancePtr()->exportSpawnTriggers();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("Spawns"))
+		else if (poParam->toString() == CString("Spawns"))
 		{
 			CPlacementState::getInstancePtr()->exportEnemySpawns();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("Objectives"))
+		else if (poParam->toString() == CString("Objectives"))
 		{
 			CPlacementState::getInstancePtr()->exportObjectiveTriggers();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("Barriers"))
+		else if (poParam->toString() == CString("Barriers"))
 		{
 			CPlacementState::getInstancePtr()->exportObjectiveBarriers();
 			return true;
 		}
-		else if (((CString)(*poParam)) == CString("All"))
+		else if (poParam->toString() == CString("All"))
 		{
 			CPlacementState::getInstancePtr()->exportNodes();
 			CPlacementState::getInstancePtr()->exportEnemySpawns();

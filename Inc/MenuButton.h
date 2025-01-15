@@ -167,7 +167,7 @@ public:
 	* @param[in]	szText					The text of the button, if any
 	*/
 	CMenuButton(int nPosX, int nPosY, int nWidth, int nHeight, const char *szTextureBackground, const char *szTextureBackgroundHover,
-		int nWidthTex, int nHeightTex, bool bCheckInput = true, CMenu* poParentMenu = 0, char *szFontFace = 0, int nFontWidth = 0, 
+		int nWidthTex, int nHeightTex, bool bCheckInput = true, CMenu* poParentMenu = 0, const char *szFontFace = 0, int nFontWidth = 0, 
 		int nFontHeight = 0, char *szText = 0);
 	
 	//! Accessors

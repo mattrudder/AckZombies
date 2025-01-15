@@ -73,7 +73,7 @@ class CPhysicsManager : public CSingleton<CPhysicsManager>
 	{
 	}
 
-	CPhysicsManager &operator =(const CPhysicsManager &r) {}
+	CPhysicsManager &operator =(const CPhysicsManager &r) { return *this; }
 	//!@}
 public:
 	/**

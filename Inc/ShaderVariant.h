@@ -12,7 +12,7 @@
 #define _SHADERVARIANT_H_
 
 // System includes
-#include <hash_map>
+#include <unordered_map>
 #include <d3dx9.h>
 
 // Forward declarations
@@ -21,7 +21,7 @@ class CShader;
 class CShaderVariant
 {
 public:
-	typedef stdext::hash_map<int, CShaderVariant*> VariantArrayHash;
+	typedef std::unordered_map<int, CShaderVariant*> VariantArrayHash;
 protected:
 	//! Parent shader
 	CShader* m_pParent;

@@ -9,9 +9,13 @@
 #ifndef _SOUND_H_
 #define _SOUND_H_
 
-#include "baseresource.h"
+
+#include "BaseResource.h"
+
+#ifndef _WIN64
 #include "fmod.hpp"
 #pragma comment(lib, "fmodex_vc.lib")
+#endif
 
 /**
 * Encapsulates a sound for fmod
@@ -22,12 +26,13 @@
 */
 class CSound : public CBaseResource
 {
+#ifndef _WIN64
 	//! pointer to the sound
 	FMOD::Sound *m_pSound;
 
 	//! the current channel if the sound is playing
 	FMOD::Channel *m_pCurChannel;
-
+#endif
 public:
 
 	/**
@@ -44,6 +49,7 @@ public:
 	*/
 	virtual ~CSound();
 
+#ifndef _WIN64
 	/**
 	* accessors for the sound class
 	*
@@ -65,7 +71,7 @@ public:
 	void setSoundPtr(FMOD::Sound* pSound) {m_pSound = pSound;}
 	void setChannelPtr(FMOD::Channel* pChan) {m_pCurChannel = pChan;}
 	//!@}
-
+#endif
 	/**
 	* Loads a sound from disk.
 	*

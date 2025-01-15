@@ -81,13 +81,12 @@ class CAIManager : public CSingleton<CAIManager>
 		//! pointer to the Spawn
 		CActor* poSpawn;
 
-		SSpawnAndDist(void) {}
-		SSpawnAndDist(float fDistance, CActorSpawn* poSpawnPtr)
+		SSpawnAndDist(float fDistance = 0.0, CActorSpawn* poSpawnPtr = nullptr)
 		{
 			fDist = fDistance;
 			poSpawn = poSpawnPtr;
 		}
-		~SSpawnAndDist(void) {}
+		~SSpawnAndDist() {}
 	};
 
 public:
@@ -97,14 +96,14 @@ public:
 	*
 	* @date Created March 27, 2006
 	*/
-	void update(void);
+	void update();
 
 	/**
 	* Create the links between static nodes and there radii of freedom
 	*
 	* @date Created March 28, 2006
 	*/
-	void createNodeLinks(void);
+	void createNodeLinks();
 
 	/**
 	* Create this dynamic node's links
@@ -147,42 +146,42 @@ public:
 	*
 	* @date Created April 19, 2006
 	*/
-	void updateGroupLeaders(void);
+	void updateGroupLeaders();
 
 	/**
 	* Checks all spawn triggers and spawns are triggered if necessary
 	*
 	* @date Created May 19, 2006
 	*/
-	void updateSpawnTriggers(void);
+	void updateSpawnTriggers();
 
 	/**
 	* Updates the current objective
 	*
 	* @date Created June 2, 2006
 	*/
-	void updateCurrentObjective(void);
+	void updateCurrentObjective();
 
 	/**
 	* sets the triggers spawns
 	*
 	* @date Created May 19, 2006
 	*/
-	void initSpawnTriggers(void);
+	void initSpawnTriggers();
 
 	/**
 	* sets the objectives barriers
 	*
 	* @date Created June 3, 2006
 	*/
-	void initObjectiveTriggers(void);
+	void initObjectiveTriggers();
 
 	/**
 	* tells the current objective about a kill, if applicable
 	*
 	* @date Created June 3, 2006
 	*/
-	void killedEnemy(void);
+	void killedEnemy();
 
 	/**
 	* Goes to the object manager and creates the enemies
@@ -199,21 +198,21 @@ public:
 	*
 	* @date Created April 30, 2006
 	*/
-	void removeLastGroup(void) { m_loGroups.pop_back(); }
+	void removeLastGroup() { m_loGroups.pop_back(); }
 
 	/**
 	* tells the AI manager that a goal has moved and should be relinked
 	*
 	* @date Created April 28, 2006
 	*/
-	inline void updateGoalLinks(void) { m_bUpdateGoalLinks = true; }
+	inline void updateGoalLinks() { m_bUpdateGoalLinks = true; }
 
 	/**
 	* see if we need to update the goals
 	*
 	* @date Created April 28, 2006
 	*/
-	inline bool getUpdateGoalLinks(void) { return m_bUpdateGoalLinks; }
+	inline bool getUpdateGoalLinks() { return m_bUpdateGoalLinks; }
 
 	/**
 	* get access to the current goal
@@ -221,7 +220,7 @@ public:
 	* @date Created June 2, 2006
 	* @return	pointer to the current objective
 	*/
-	inline CObjectiveTrigger* getCurrentObjective(void) { return m_poCurrentObjective; }
+	inline CObjectiveTrigger* getCurrentObjective() { return m_poCurrentObjective; }
 
 	/**
 	* get the vector to the next objective
@@ -237,7 +236,7 @@ public:
 	*
 	* @date Created June 10, 2006
 	*/
-	inline void skipCurrentObjective(void) { m_bSkipCurrentObjective = true; }
+	inline void skipCurrentObjective() { m_bSkipCurrentObjective = true; }
 };
 
 #endif /*_AIMANAGER_H_*/

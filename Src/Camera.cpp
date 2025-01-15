@@ -16,18 +16,17 @@
 * CCamera::setCamera
 * date Modified March 13, 2006
 */
-void CCamera::setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, D3DXVECTOR3 &vPTwoPos)
+void CCamera::setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, const D3DXVECTOR3 &vPTwoPos)
 {
-	// do this
-	if(vPTwoPos == D3DXVECTOR3(0,0,0))
-		vPTwoPos = targ;
 	// store the position of the camera
 	m_Position = pos;
 	// store the target position of the camera
 	m_Target = (targ+vPTwoPos)*0.5f;
 	// store the vector from the target to the position
 	m_TargToPos = m_Position - m_Target;
-	D3DXVec3Normalize(&m_UnitTargPos, &(m_Target - m_Position)); 
+
+	auto tmp = m_Target - m_Position;
+	D3DXVec3Normalize(&m_UnitTargPos, &tmp);
 
 	// set the up vector based on the world's up
 	m_UpVector = D3DXVECTOR3(0,1,0);
@@ -40,8 +39,10 @@ void CCamera::setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, D3DXVEC
 
 	// set the initial rotation of the camera
 	D3DXVECTOR3 vec = -m_AtVector;
-	m_fRotation = acosf(D3DXVec3Dot(&vec, &D3DXVECTOR3(0,0,1)));
-	if(D3DXVec3Dot(&vec, &D3DXVECTOR3(1,0,0)) < 0) m_fRotation = -m_fRotation;
+	auto Z = D3DXVECTOR3(0, 0, 1);
+	m_fRotation = acosf(D3DXVec3Dot(&vec, &Z));
+	auto X = D3DXVECTOR3(1, 0, 0);
+	if(D3DXVec3Dot(&vec, &X) < 0) m_fRotation = -m_fRotation;
 
 	if (targ == vPTwoPos)
 		m_fInitDist = 0.0f;
@@ -58,7 +59,8 @@ void CCamera::setCameraPos(D3DXVECTOR3 &pos)
 {
 	m_Position = pos;
 	m_TargToPos = m_Position - m_Target;
-	D3DXVec3Normalize(NULL, &m_UnitTargPos, &(m_Target - m_Position));
+	auto tmp = m_Target - m_Position;
+	D3DXVec3Normalize(NULL, &m_UnitTargPos, &tmp);
 }
 
 /**
@@ -87,7 +89,8 @@ void CCamera::updateCameraMP(const D3DXVECTOR3 &one, const D3DXVECTOR3 &two)
 		return;
 
 	// set the target to the point b/w the two players'
-	D3DXVec3Scale(&m_Target, &(one + two), 0.5f);
+	auto tmp = one + two;
+	D3DXVec3Scale(&m_Target, &tmp, 0.5f);
 
 	// compute the distance b/w the characters
 	float fDist = computeDistance(one, two);
@@ -140,13 +143,15 @@ void CCamera::rotateCamera(float fRot)
 		m_fRotation += 2*M_PI;
 
 	// trig it up, i hate matrix math.
-	float fCameraDist = D3DXVec2Length(&(D3DXVECTOR2(m_TargToPos.x, m_TargToPos.z))); 
+	auto tmp = D3DXVECTOR2(m_TargToPos.x, m_TargToPos.z);
+	float fCameraDist = D3DXVec2Length(&tmp); 
 	m_Position.x = fCameraDist * sin(m_fRotation) + m_Target.x;
 	m_Position.z = fCameraDist * cos(m_fRotation) + m_Target.z;
 
 	// recompute the vector from the target to the camera position
 	m_TargToPos = m_Position - m_Target;
-	D3DXVec3Normalize(NULL, &m_UnitTargPos, &(m_Target - m_Position));
+	auto tmp2 = m_Target - m_Position;
+	D3DXVec3Normalize(NULL, &m_UnitTargPos, &tmp2);
 
 	// compute the new at and right of the camera
 	m_AtVector = m_Target - m_Position;

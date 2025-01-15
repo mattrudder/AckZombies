@@ -14,6 +14,8 @@
 #include "DirectInputWrapper.h"
 #include "Player.h"
 
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+
 /**
 * COptions::COptions
 * @date Modified June 9, 2006
@@ -146,7 +148,7 @@ void COptions::resetGamma()
 	for (unsigned int i = 0; i < 256; ++i)
 	{
 		oGamma.red[i] = oGamma.green[i] = oGamma.blue[i] = 
-			unsigned short(min(255, i * (fGamma))) << 8;
+			((unsigned short)(min(255, i * (fGamma)))) << 8;
 	}
 
 	CRenderSystem::getInstance().getRenderDevice().getD3DDevice()->SetGammaRamp(0, D3DSGR_NO_CALIBRATION, &oGamma);
@@ -216,7 +218,7 @@ void COptionsSoundVolumeLeftArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nSoundVolume; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -248,7 +250,7 @@ void COptionsSoundVolumeRightArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nSoundVolume; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -280,7 +282,7 @@ void COptionsMusicVolumeLeftArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nMusicVolume; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -312,7 +314,7 @@ void COptionsMusicVolumeRightArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nMusicVolume; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -344,7 +346,7 @@ void COptionsGammaLevelLeftArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nGammaLevel; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -362,7 +364,7 @@ void COptionsGammaLevelLeftArrowButton::doAction(void)
 	for (unsigned int i = 0; i < 256; ++i)
 	{
 		oGamma.red[i] = oGamma.green[i] = oGamma.blue[i] = 
-			unsigned short(min(255, i * (fGamma))) << 8;
+			((unsigned short)(min(255, i * (fGamma)))) << 8;
 	}
 
 	CRenderSystem::getInstance().getRenderDevice().getD3DDevice()->SetGammaRamp(0, D3DSGR_NO_CALIBRATION, &oGamma);
@@ -387,7 +389,7 @@ void COptionsGammaLevelRightArrowButton::doAction(void)
 
 	for (int i = 0; i < poOptionsMenu->m_nGammaLevel; ++i)
 	{
-		strVolume += "¦";
+		strVolume += "|";
 	}
 
 	// get the text box
@@ -405,7 +407,7 @@ void COptionsGammaLevelRightArrowButton::doAction(void)
 	for (unsigned int i = 0; i < 256; ++i)
 	{
 		oGamma.red[i] = oGamma.green[i] = oGamma.blue[i] = 
-			unsigned short(min(255, i * (fGamma))) << 8;
+			((unsigned short)(min(255, i * (fGamma)))) << 8;
 	}
 
 	CRenderSystem::getInstance().getRenderDevice().getD3DDevice()->SetGammaRamp(0, D3DSGR_NO_CALIBRATION, &oGamma);

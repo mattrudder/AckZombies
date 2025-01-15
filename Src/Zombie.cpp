@@ -143,7 +143,7 @@ CObject* CZombie::create()
 	CZombie* poZombie = new CZombie;
 	// test code to load mesh
 	poZombie->m_pMesh = (CMesh*)CResourceManager::getInstance().loadResource(RES_ANIMATEDMESH, "citizenZombie.x");
-	return poZombie;
+	return static_cast<CObject*>(poZombie);
 }
 
 /**

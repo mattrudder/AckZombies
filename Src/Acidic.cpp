@@ -70,7 +70,7 @@ CObject* CAcidic::create()
 {
 	CAcidic* poZombie = new CAcidic;
 	poZombie->m_pMesh = (CMesh*)CResourceManager::getInstance().loadResource(RES_ANIMATEDMESH, "IceCreamZombie.x");
-	return poZombie;
+	return static_cast<CObject*>(poZombie);
 }
 
 /**

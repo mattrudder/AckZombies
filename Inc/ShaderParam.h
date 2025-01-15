@@ -13,7 +13,8 @@
 
 // System includes
 #include <d3dx9.h>
-#include <hash_map>
+#include <string>
+#include <unordered_map>
 
 // Engine include
 #include "ShaderVariant.h"
@@ -29,7 +30,7 @@ class CShaderParam : public CShaderVariant
 {
 public:
 	//! Internal Types
-	typedef stdext::hash_map<std::string, CShaderVariant*> ParamAnnotationList;
+	typedef std::unordered_map<std::string, CShaderVariant*> ParamAnnotationList;
 protected:
 	//! List of parameter annotations.
 	ParamAnnotationList m_mAnnotations;

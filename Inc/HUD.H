@@ -13,8 +13,8 @@
 #include "MenuManager.h"
 #include "Menu.h"
 #include "MainButtons.h"
-#include "objectmanager.h"
-#include "player.h"
+#include "ObjectManager.h"
+#include "Player.h"
 
 #define MAX_AWESOME 512
 #define MAX_AWESOME_TEX 327

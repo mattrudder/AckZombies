@@ -14,7 +14,7 @@
 #include <vector>
 using std::vector;
 
-#include "ticktimer.h"
+#include "TickTimer.h"
 
 #ifndef SAFE_RELEASE
 #define SAFE_RELEASE(p) { if(p) { (p)->Release(); (p)=NULL; } }

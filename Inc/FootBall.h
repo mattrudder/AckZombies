@@ -59,7 +59,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CFootBall;
+		return static_cast<CObject*>(new CFootBall);
 	}
 };
 

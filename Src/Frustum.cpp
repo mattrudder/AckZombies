@@ -253,7 +253,7 @@ CFrustum::EFrustumTest CFrustum::containsAABB(SAABB& oAABB, bool bCheckIntersect
 * CFrustum::containsSphere
 * @date Modified Apr 06, 2006
 */
-CFrustum::EFrustumTest CFrustum::containsSphere(SSphere& oSphere)
+CFrustum::EFrustumTest CFrustum::containsSphere(const SSphere& oSphere)
 {
 	int nValue;
 	bool bTestIntersect = false;

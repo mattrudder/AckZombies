@@ -8,7 +8,7 @@
 
 // Local includes
 #include "ShaderInclude.h"
-#include "resource.h"
+#include "Resource.h"
 
 // Engine includes
 #include "AcespaceEngine.h"
@@ -18,9 +18,9 @@
 * 
 * @date Modified Apr 02, 2006
 */
-HRESULT CShaderInclude::Open(D3DXINCLUDE_TYPE eIncludeType, LPCSTR szFilename, LPCVOID pParentData, LPCVOID* ppData, UINT* pBytes)
+__declspec(nothrow) HRESULT CShaderInclude::Open(D3DXINCLUDE_TYPE eIncludeType, LPCSTR szFilename, LPCVOID pParentData, LPCVOID* ppData, UINT* pBytes)
 {
-
+	using namespace std;
 	// Check for engine specific includes
 	if(!stricmp(szFilename, "sas/sas.fxh") || 
 		!stricmp(szFilename, "sas\\sas.fxh") || 
@@ -94,7 +94,7 @@ HRESULT CShaderInclude::Open(D3DXINCLUDE_TYPE eIncludeType, LPCSTR szFilename, L
 * 
 * @date Modified Apr 02, 2006
 */
-HRESULT CShaderInclude::Close(LPCVOID pData)
+__declspec(nothrow) HRESULT CShaderInclude::Close(LPCVOID pData)
 {
 	unsigned char* szInclude = (unsigned char*)pData;
 	if(szInclude)

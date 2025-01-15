@@ -5,8 +5,8 @@
 *
 * Speed powerups within the world
 */
-#include "speedpack.h"
-#include "objectmanager.h"
+#include "SpeedPack.h"
+#include "ObjectManager.h"
 
 /**
 * constructor

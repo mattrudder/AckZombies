@@ -15,12 +15,20 @@
 // System includes
 #include <d3dx9anim.h>
 
+#ifndef max
+#define max(a,b)            (((a) > (b)) ? (a) : (b))
+#endif
+
+#ifndef min
+#define min(a,b)            (((a) < (b)) ? (a) : (b))
+#endif
+
 /**
 * CAnimatedMesh::CAnimatedMesh
 * @date Modified May 15, 2006
 */
-CAnimatedMesh::CAnimatedMesh(void) : m_pFrameRoot(NULL), m_pAnimController(NULL), 
-	m_pBoneMatrices(NULL), m_pFirstMesh(NULL), m_fAnimSpeed(1.0f), 
+CAnimatedMesh::CAnimatedMesh(void) : m_pFrameRoot(NULL), m_pAnimController(NULL),
+	m_pBoneMatrices(NULL), m_pFirstMesh(NULL), m_fAnimSpeed(1.0f),
 	m_fCurrentTime(0.0f), m_dwCurrentTrack(-1), m_dwCurrentAnimSet(-1), m_unNumBoneMax(0)
 {
 	m_fLastEngineTime = CTimer::getInstance().getTime();
@@ -38,7 +46,7 @@ CAnimatedMesh::~CAnimatedMesh(void)
 	--pFrame->ulRefCount;
 	if(!pFrame->ulRefCount)
 		D3DXFrameDestroy(m_pFrameRoot, &oAlloc);
-		
+
 }
 
 /**
@@ -70,8 +78,8 @@ CBaseResource* CAnimatedMesh::cloneResource(void)
 	pMesh->m_pFirstMesh = m_pFirstMesh;
 	pMesh->m_ulRefCount = 1;
 
-	m_pAnimController->CloneAnimationController(m_pAnimController->GetMaxNumAnimationOutputs(), 
-		m_pAnimController->GetNumAnimationSets(), m_pAnimController->GetMaxNumTracks(), 
+	m_pAnimController->CloneAnimationController(m_pAnimController->GetMaxNumAnimationOutputs(),
+		m_pAnimController->GetNumAnimationSets(), m_pAnimController->GetMaxNumTracks(),
 		m_pAnimController->GetMaxNumEvents(), &pMesh->m_pAnimController);
 
 	pMesh->setAnimationSet(0);
@@ -216,12 +224,12 @@ void CAnimatedMesh::drawMesh(LPDIRECT3DDEVICE9 pDev, bool bTextured, SMeshContai
 		NumBlend = 0;
 		for(DWORD i = 0; i < pMesh->m_dwNumInfl; i++)
 		{
-			if(pBoneCombination[iAttrib].BoneId[i] != UINT_MAX) 
+			if(pBoneCombination[iAttrib].BoneId[i] != UINT_MAX)
 				NumBlend = i;
 		}
 
 		if(d3dCaps.MaxVertexBlendMatrices >= NumBlend + 1)
-		{	
+		{
 			DWORD dwCull, dwBlend, dwSrcBlend, dwDestBlend;
 			bool bBlend = false;
 
@@ -262,7 +270,7 @@ void CAnimatedMesh::drawMesh(LPDIRECT3DDEVICE9 pDev, bool bTextured, SMeshContai
 
 			LPD3DXMESH pDrawMesh = ( pMesh->pSkinInfo) ? pMesh->m_pSkinMesh : pMesh->MeshData.pMesh;
 			pDrawMesh->DrawSubset(iAttrib);
-			
+
 			if(bTextured)
 				pMesh->m_vMaterials[pBoneCombination[iAttrib].AttribId]->end();
 
@@ -416,7 +424,7 @@ UINT CAnimatedMesh::getAnimationSetByName(const char* szName)
 	for(i = 0; i < unNumSets; ++i)
 	{
 		m_pAnimController->GetAnimationSet(i, &pAnimSet);
-		if(!stricmp(pAnimSet->GetName(), szName))
+		if(!_stricmp(pAnimSet->GetName(), szName))
 		{
 			pAnimSet->Release();
 			return i;
@@ -443,7 +451,7 @@ void CAnimatedMesh::setAnimationSetByName(const char* szName)
 	for(i = 0; i < unNumSets; ++i)
 	{
 		m_pAnimController->GetAnimationSet(i, &pSet);
-		if(!stricmp(pSet->GetName(), szName))
+		if(!_stricmp(pSet->GetName(), szName))
 			break;
 
 		pSet->Release();

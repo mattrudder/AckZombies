@@ -28,11 +28,11 @@ void CShotgunButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poShotgun->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_SHOTGUN) == OBJ_WEAPON_SHOTGUN)
 				{
 					bHasWeapon = true;
@@ -90,9 +90,9 @@ void CRocketLauncherButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poRocketLauncher->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
 				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_ROCKETLAUNCHER) == OBJ_WEAPON_ROCKETLAUNCHER)
@@ -152,11 +152,11 @@ void CTripleBarrelShotgunButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poTripleShotgun->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_TRIPLESHOTGUN) == OBJ_WEAPON_TRIPLESHOTGUN)
 				{
 					bHasWeapon = true;
@@ -214,11 +214,11 @@ void CHolyWaterBalloonCanonButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poHolyWaterBalloonCanon->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_HOLYWATERCANNON) == OBJ_WEAPON_HOLYWATERCANNON)
 				{
 					bHasWeapon = true;
@@ -276,11 +276,11 @@ void CBigCluckingBombButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poBigCluckingBomb->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CGrenadeWeapon*> *pGrenadeList = m_poVendingMachine->getPlayer()->getGrenadeList();
+			auto pGrenadeList = m_poVendingMachine->getPlayer()->getGrenadeList();
 			bool bHasWeapon = false;
-			for (list<CGrenadeWeapon*>::iterator iter = pGrenadeList->begin(); iter != pGrenadeList->end(); ++iter)
+			for (auto iter = pGrenadeList->begin(); iter != pGrenadeList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_BIGCLUCKINGBOMB) == OBJ_WEAPON_BIGCLUCKINGBOMB)
 				{
 					bHasWeapon = true;
@@ -338,11 +338,11 @@ void CDesertEagleButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poDesertEagle->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_DEAGLE) == OBJ_WEAPON_DEAGLE)
 				{
 					bHasWeapon = true;
@@ -400,11 +400,11 @@ void CPotatoChainGunButton::doAction()
 		if (pFirstPlayer->getAmtMoney() >= (unsigned int)m_poPotatoChaingun->getCost())
 		{
 			// if they already have the weapon, just give them the ammo for it.
-			list<CBaseWeapon*> *pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
+			auto pWeaponList = m_poVendingMachine->getPlayer()->getWeaponList();
 			bool bHasWeapon = false;
-			for (list<CBaseWeapon*>::iterator iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
+			for (auto iter = pWeaponList->begin(); iter != pWeaponList->end(); ++iter)
 			{
-				CBaseWeapon *pWeapon = (CBaseWeapon*)*iter;
+				auto pWeapon = (CBaseWeapon*)*iter;
 				if ((pWeapon->getType() & OBJ_WEAPON_POTATOGUN) == OBJ_WEAPON_POTATOGUN)
 				{
 					bHasWeapon = true;

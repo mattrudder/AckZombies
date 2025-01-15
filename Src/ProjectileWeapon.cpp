@@ -12,6 +12,8 @@
 #include "Enemy.h"
 #include "Player.h"
 
+CProjectileWeapon::~CProjectileWeapon() { }
+
 /**
 * CProjectileWeapon::collided
 * @date Modified May 4, 2006

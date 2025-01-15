@@ -14,8 +14,10 @@
 */
 CSound::CSound(void)
 {
+#ifndef _WIN64
 	m_pCurChannel = NULL;
 	m_pSound = NULL;
+#endif
 }
 
 /**
@@ -35,6 +37,7 @@ CBaseResource* CSound::createSoundFromFile(const CString sFileName)
 	// create a new sound
 	CSound *pSound = new CSound;
 
+#ifndef _WIN64
 	// load the sound via FMOD
 	CSoundManager::getInstance().m_pFmodSys->createSound(sFileName.GetBuffer(), FMOD_DEFAULT, NULL, &pSound->m_pSound);
 
@@ -48,6 +51,7 @@ CBaseResource* CSound::createSoundFromFile(const CString sFileName)
 		CSoundManager::getInstance().m_pFmodSys->createStream(sFileName.GetBuffer(), FMOD_LOOP_NORMAL|FMOD_2D|FMOD_HARDWARE,
 			NULL, &pSound->m_pSound);
 	}
+#endif
 
 	return pSound;
 }
@@ -58,6 +62,7 @@ CBaseResource* CSound::createSoundFromFile(const CString sFileName)
 */
 unsigned int CSound::getLength()
 {
+#ifndef _WIN64
 	if (m_pSound)
 	{
 		unsigned int unLength;
@@ -66,5 +71,8 @@ unsigned int CSound::getLength()
 	}
 	else
 		return 0;
+#else
+	return 0;
+#endif
 }
 

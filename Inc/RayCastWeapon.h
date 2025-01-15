@@ -46,9 +46,7 @@ public:
 	* 
 	* @date Created April 7, 2006	
 	*/
-	virtual ~CRayCastWeapon() = 0
-	{
-	}
+	virtual ~CRayCastWeapon() = 0;
 
 	/**
 	* Fires a Weapon.

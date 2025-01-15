@@ -69,7 +69,7 @@ public:
 		CActorSpawn* poSpawn = new CActorSpawn;
 		poSpawn->setMesh(NULL/*(CMesh*)CResourceManager::getInstance().loadResource(RES_MESH, "starZombie.x")*/);
 		poSpawn->deactivate();
-		return poSpawn;
+		return static_cast<CObject*>(poSpawn);
 	}
 };
 #endif /*_ACTORSPAWN_H_*/

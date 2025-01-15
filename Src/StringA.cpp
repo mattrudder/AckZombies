@@ -4,7 +4,7 @@
 * @date Modified Mar 02, 2006
 *
 * Our user-friendly string class.
-*/ 
+*/
 
 // Engine include
 #include "Globals.h"
@@ -258,7 +258,7 @@ int CStringA::ToInt(void) const
 */
 bool CStringA::ToBool(void) const
 {
-	return !stricmp(m_strTheString.c_str(), "true");
+	return !_stricmp(m_strTheString.c_str(), "true");
 }
 
 /**
@@ -284,11 +284,11 @@ unsigned long CStringA::ToUlongFromHex(void) const
 * CStringA::ToList
 * @date Modified Mar 02, 2006
 */
-void CStringA::ToList(std::vector<CStringA>& vList, char* szDelim) const
+void CStringA::ToList(std::vector<CStringA>& vList, const char* szDelim) const
 {
 	// Clear the incoming vector.
 	vList.clear();
-	
+
 	// Copy the string to an outside buffer.
 	char* szString = new char[m_strTheString.length()+1];
 	memset(szString, 0, m_strTheString.length()+1);
@@ -470,7 +470,7 @@ CStringA & CStringA::operator*=(const unsigned int uiTimes)
 */
 bool CStringA::operator==(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) == 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) == 0;
 }
 
 /**
@@ -479,7 +479,7 @@ bool CStringA::operator==(const CStringA& str) const
 */
 bool CStringA::operator!=(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) != 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) != 0;
 }
 
 /**
@@ -488,7 +488,7 @@ bool CStringA::operator!=(const CStringA& str) const
 */
 bool CStringA::operator<(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) < 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) < 0;
 }
 
 /**
@@ -497,7 +497,7 @@ bool CStringA::operator<(const CStringA& str) const
 */
 bool CStringA::operator<=(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) <= 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) <= 0;
 }
 
 /**
@@ -506,7 +506,7 @@ bool CStringA::operator<=(const CStringA& str) const
 */
 bool CStringA::operator>(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) > 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) > 0;
 }
 
 /**
@@ -515,7 +515,7 @@ bool CStringA::operator>(const CStringA& str) const
 */
 bool CStringA::operator>=(const CStringA& str) const
 {
-	return stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) >= 0;
+	return _stricmp(m_strTheString.c_str(), str.m_strTheString.c_str()) >= 0;
 }
 
 /**

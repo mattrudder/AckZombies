@@ -30,7 +30,7 @@ public:
 	float getRadius(void) { return m_fRadius; }
 	void setRadius(float fRadius) { m_fRadius = fRadius; }
 
-	static CObject* create(void) { return new CPointLight; }
+	static CObject* create(void) { return static_cast<CObject*>(new CPointLight); }
 };
 
 #endif //_POINTLIGHT_H_

@@ -12,6 +12,7 @@
 
 // System includes
 #include <d3dx9.h>
+#include <d3dx9math.h>
 
 // Engine includes
 #include "Mesh.h"

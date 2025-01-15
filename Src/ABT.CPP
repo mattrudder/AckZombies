@@ -19,6 +19,8 @@
 #include "Geometry.h"
 #include "Material.h"
 
+using namespace std;
+
 /**
 * CABT::CABT
 * @date Modified Apr 17, 2006
@@ -41,6 +43,8 @@ CABT::~CABT(void)
 */
 unsigned int CABT::getSplittingPlane(std::vector<CMesh::SVertex>& vVertex, SAABB& oAABB, SPlane& oPlane)
 {
+	using namespace std;
+
 	float fBestSplitScore = 100000000.0f;
 	float fLargestAxis;
 	size_t nNumVerts = vVertex.size();
@@ -220,7 +224,10 @@ void CABT::splitTriangle(CMesh::SVertex* pVertex, SPlane& oPlane, std::vector<CM
 				vNewVertex.vPosition = vIntersect;
 				D3DXVec3Lerp(&vNewVertex.vNormal, &vA.vNormal, &vB.vNormal, fFactor);
 				D3DXVec2Lerp(&vNewVertex.vTexCoord0, &vA.vTexCoord0, &vB.vTexCoord0, fFactor);
-				D3DXColorLerp(&oColor, &D3DXCOLOR(vA.Color), &D3DXCOLOR(vB.Color), fFactor);
+
+				auto colorA = D3DXCOLOR(vA.Color);
+				auto colorB = D3DXCOLOR(vB.Color);
+				D3DXColorLerp(&oColor, &colorA, &colorB, fFactor);
 				vNewVertex.Color = oColor;
 				
 				vFrontFaces.push_back(vNewVertex);
@@ -250,7 +257,9 @@ void CABT::splitTriangle(CMesh::SVertex* pVertex, SPlane& oPlane, std::vector<CM
 				vNewVertex.vPosition = vIntersect;
 				D3DXVec3Lerp(&vNewVertex.vNormal, &vA.vNormal, &vB.vNormal, fFactor);
 				D3DXVec2Lerp(&vNewVertex.vTexCoord0, &vA.vTexCoord0, &vB.vTexCoord0, fFactor);
-				D3DXColorLerp(&oColor, &D3DXCOLOR(vA.Color), &D3DXCOLOR(vB.Color), fFactor);
+				auto colorA = D3DXCOLOR(vA.Color);
+				auto colorB = D3DXCOLOR(vB.Color);
+				D3DXColorLerp(&oColor, &colorA, &colorB, fFactor);
 				vNewVertex.Color = oColor;
 
 				vFrontFaces.push_back(vNewVertex);
@@ -292,6 +301,8 @@ bool bHeh = false;
 */
 CABT::SABTNode* CABT::createSubtree(std::vector<CMesh::SVertex>& vVertex, std::vector<CMaterial*>& vMaterials)
 {
+	using namespace std;
+
 	if(vVertex.empty())
 		return NULL;
 
@@ -369,14 +380,14 @@ CABT::SABTNode* CABT::createSubtree(std::vector<CMesh::SVertex>& vVertex, std::v
 				}
 			}
 
-			if(eClass == PT_FRONT)
+			if(eClass == TRI_FRONT)
 			{
 				vVertexLeft.push_back(vVertex[i]);
 				vVertexLeft.push_back(vVertex[i+1]);
 				vVertexLeft.push_back(vVertex[i+2]);
 				vMaterialLeft.push_back(vMaterials[unTriangle]);
 			}
-			else if(eClass == PT_BACK)
+			else if(eClass == TRI_BACK)
 			{
 				vVertexRight.push_back(vVertex[i]);
 				vVertexRight.push_back(vVertex[i+1]);

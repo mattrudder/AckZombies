@@ -9,32 +9,26 @@
 #include <windows.h>
 #include <iostream>
 #include <fstream>
-using namespace std;
 
 class CDebugStream
 #ifdef _UNICODE
-	: public basic_ostream<wchar_t>
+	: public std::basic_ostream<wchar_t>
 #else
-	: public basic_ostream<char>
+	: public std::basic_ostream<char>
 #endif
 {
 #ifdef _UNICODE
-	typedef basic_ostream<wchar_t> stream_type;
-	typedef basic_filebuf<wchar_t> buffer_type;
 	typedef wchar_t char_type;
 #else
-	typedef basic_ostream<char> stream_type;
-	typedef basic_filebuf<char> buffer_type;
 	typedef char char_type;
 #endif
 
-	FILE *								m_fpLog;
-	FILE *								m_fpNull;
+	typedef std::basic_ostream<char_type> stream_type;
+	typedef std::basic_filebuf<char_type> buffer_type;
 
-
-	buffer_type *						m_fbLog;
+	buffer_type							m_fbLog;
 	buffer_type							m_fbNull;
-	twobufstream<char_type> *			m_fbTwo;
+	twobufstream<char_type>				m_fbTwo;
 	bool m_bDebugLog;
 	static bool m_bIsDebug;
 

@@ -28,31 +28,31 @@ CParticleEffectContentHandler::CParticleEffectContentHandler(CParticleSystem* pE
 */
 CParticleEffectContentHandler::EEffectFlags CParticleEffectContentHandler::getElemType(const wchar_t* pwchLocalName)
 {
-	if(!wcsicmp(pwchLocalName, L"ParticleSystem"))
+	if(!_wcsicmp(pwchLocalName, L"ParticleSystem"))
 		return EFF_SYSTEM;
 
-	if(!wcsicmp(pwchLocalName, L"Effect"))
+	if(!_wcsicmp(pwchLocalName, L"Effect"))
 		return EFF_EFFECT;
 
-	if(!wcsicmp(pwchLocalName, L"MaxVelocity"))
+	if(!_wcsicmp(pwchLocalName, L"MaxVelocity"))
 		return EFF_MAXVEL;
 
-	if(!wcsicmp(pwchLocalName, L"MinVelocity"))
+	if(!_wcsicmp(pwchLocalName, L"MinVelocity"))
 		return EFF_MINVEL;
 
-	if(!wcsicmp(pwchLocalName, L"SpawnRadius"))
+	if(!_wcsicmp(pwchLocalName, L"SpawnRadius"))
 		return EFF_RADIUS;
 
-	if(!wcsicmp(pwchLocalName, L"AttributeList"))
+	if(!_wcsicmp(pwchLocalName, L"AttributeList"))
 		return EFF_ATTRLIST;
 
-	if(!wcsicmp(pwchLocalName, L"Attribute"))
+	if(!_wcsicmp(pwchLocalName, L"Attribute"))
 		return EFF_ATTRIB;
 
-	if(!wcsicmp(pwchLocalName, L"Keyframes"))
+	if(!_wcsicmp(pwchLocalName, L"Keyframes"))
 		return EFF_KEYLIST;
 
-	if(!wcsicmp(pwchLocalName, L"Keyframe"))
+	if(!_wcsicmp(pwchLocalName, L"Keyframe"))
 		return EFF_KEYFRAME;
 
 	return EFF_NONE;
@@ -175,7 +175,7 @@ void CParticleEffectContentHandler::processAttributes(EEffectFlags eType,
 * CParticleEffectContentHandler::getBlendOp
 * @date Modified May 21, 2006
 */
-CParticleEffect::EBlendOp CParticleEffectContentHandler::getBlendOp(CString& sBlend)
+CParticleEffect::EBlendOp CParticleEffectContentHandler::getBlendOp(const CString& sBlend)
 {
 	if(sBlend == CString("Replace"))
 		return CParticleEffect::OP_REPLACE;
@@ -193,7 +193,7 @@ CParticleEffect::EBlendOp CParticleEffectContentHandler::getBlendOp(CString& sBl
 * CParticleEffectContentHandler::getShape
 * @date Modified May 21, 2006
 */
-CParticleEffect::EShape CParticleEffectContentHandler::getShape(CString& sShape)
+CParticleEffect::EShape CParticleEffectContentHandler::getShape(const CString& sShape)
 {
 	if(sShape == CString("Square"))
 		return CParticleEffect::SH_SQUARE;
@@ -214,7 +214,7 @@ CParticleEffect::EShape CParticleEffectContentHandler::getShape(CString& sShape)
 * CParticleEffectContentHandler::getSpawnMode
 * @date Modified May 26, 2006
 */
-CParticleEffect::ESpawnMode CParticleEffectContentHandler::getSpawnMode(CString& sMode)
+CParticleEffect::ESpawnMode CParticleEffectContentHandler::getSpawnMode(const CString& sMode)
 {
 	if(sMode == CString("Instant"))
 		return CParticleEffect::SM_INSTANT;
@@ -229,7 +229,7 @@ CParticleEffect::ESpawnMode CParticleEffectContentHandler::getSpawnMode(CString&
 * CParticleEffectContentHandler::getAttribType
 * @date Modified May 21, 2006
 */
-CParticleAttribute::EAttributeType CParticleEffectContentHandler::getAttribType(CString& sType)
+CParticleAttribute::EAttributeType CParticleEffectContentHandler::getAttribType(const CString& sType)
 {
 	if(sType == CString("ColorAlpha"))
 		return CParticleAttribute::ATR_COLORALPHA;
@@ -257,7 +257,7 @@ CParticleAttribute::EAttributeType CParticleEffectContentHandler::getAttribType(
 * CParticleEffectContentHandler::getInterpMethod
 * @date Modified May 21, 2006
 */
-CParticleAttribute::EInterpolationType CParticleEffectContentHandler::getInterpMethod(CString& sType)
+CParticleAttribute::EInterpolationType CParticleEffectContentHandler::getInterpMethod(const CString& sType)
 {
 	if(sType == CString("Linear"))
 		return CParticleAttribute::INTERP_LINEAR;

@@ -104,7 +104,7 @@ CBaseResource* CParticleSystem::createEmitterFromFile(const CString sFilename)
 
 	CString fmt;
 	fmt.Format("Particle system \"%s\" loaded with %d effects", sFilename.GetBuffer(), pNewEmitter->m_vEffects.size());
-	Log << fmt.GetBuffer() << endl;
+	Log << fmt.GetBuffer() << std::endl;
 
 	// Cleanup
 	delete reader;

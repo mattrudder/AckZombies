@@ -68,7 +68,7 @@ public:
 		CAINode* poNode = new CAINode;
 		poNode->m_pMesh = NULL;//(CMesh*)CResourceManager::getInstance().loadResource(RES_MESH, "star.x");
 		poNode->deactivate();
-		return poNode;
+		return static_cast<CObject*>(poNode);
 	}
 
 	virtual void update(void){}

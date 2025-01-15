@@ -1,10 +1,10 @@
 #ifndef _ANIMATION_H_
 #define _ANIMATION_H_
 
-#include "d3d9.h"
-#include "d3dx9.h"
-#include "d3dx9anim.h"
-#include "D3dx9effect.h"
+#include <d3d9.h>
+#include <d3dx9.h>
+#include <d3dx9anim.h>
+#include <d3dx9effect.h>
 
 class CMaterial;
 

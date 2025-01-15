@@ -60,7 +60,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CIceCream;
+		return static_cast<CObject*>(new CIceCream);
 	}
 
 	/**

@@ -78,11 +78,12 @@ void CCreditsMenu::drawMenu(D3DXVECTOR2 *pMouseCursor)
 	// draw the OK Button
 	if (m_pOKButton->drawButton(pMouseCursor))
 	{
-		if ((int)m_pOKButton != m_nHoverIndex)
-		{
-			CSoundManager::getInstance().playSound(SND_EFFECT_MENUHOVER);
-			m_nHoverIndex = (int)m_pOKButton;
-		}
+		// wtf?
+		// if ((int)m_pOKButton != m_nHoverIndex)
+		// {
+		// 	CSoundManager::getInstance().playSound(SND_EFFECT_MENUHOVER);
+		// 	m_nHoverIndex = (int)m_pOKButton;
+		// }
 	}
 	else
 		m_nHoverIndex = 1;

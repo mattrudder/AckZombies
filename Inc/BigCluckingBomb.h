@@ -85,7 +85,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CBigCluckingBombWeapon;
+		return static_cast<CObject*>(new CBigCluckingBombWeapon);
 	}
 
 	/**

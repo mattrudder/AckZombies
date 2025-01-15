@@ -94,7 +94,7 @@ struct SSphere
 	float		fRadius;
 
 	SSphere(void) : centerPt(0.0f, 0.0f, 0.0f), fRadius(0.0f) {}
-	SSphere(D3DXVECTOR3 &center, float fRad) : centerPt(center), fRadius(fRad) {}
+	SSphere(const D3DXVECTOR3 &center, float fRad) : centerPt(center), fRadius(fRad) {}
 	~SSphere(void) {}
 };
 

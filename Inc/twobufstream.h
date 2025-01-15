@@ -10,7 +10,6 @@
 #define _TWOBUFSTREAM_H_
 
 #include <iostream>
-using namespace std;
 
 /**
 * Override of basic_streambuf to allow two buffers. Used for logging system.
@@ -19,19 +18,21 @@ using namespace std;
 * @date Created Mar 28, 2006
 * @date Modified Mar 28, 2006
 */
-template<class char_type>
-class twobufstream : public basic_streambuf<char_type>
+template<class T>
+class twobufstream : public std::basic_streambuf<T>
 {
 	// Types
 public:
-
-	typedef char_traits<char_type> traits_type;
-	typedef basic_streambuf<char_type> buffer_type;
+	using buffer_type = std::basic_streambuf<T>;
+    using char_type = typename buffer_type::char_type;
+    using int_type = typename buffer_type::int_type;
+	using traits_type = typename buffer_type::traits_type;
 
 protected:
 	// Members
 	buffer_type* m_bufConsole;
 	buffer_type* m_bufLog;
+	std::basic_filebuf<char_type> m_fbNull;
 
 	/**
 	* Insert elements into the output stream.
@@ -67,9 +68,14 @@ protected:
 	}
 public:
 
-	twobufstream(buffer_type* pBufCon, buffer_type* pBufLog) : basic_streambuf<char_type>(), m_bufConsole(pBufCon), m_bufLog(pBufLog)
+	twobufstream() : std::basic_streambuf<char_type>(), m_bufConsole(&m_fbNull), m_bufLog(&m_fbNull)
 	{
-		setp(0, 0);
+		m_fbNull.open("nul", std::ios::out);
+	}
+
+	twobufstream(buffer_type* pBufCon, buffer_type* pBufLog) : std::basic_streambuf<char_type>(), m_bufConsole(pBufCon), m_bufLog(pBufLog)
+	{
+		this->setp(0, 0);
 	}
 
 public:
@@ -81,10 +87,17 @@ public:
 	* @param[in]	pBufCon	Buffer for console.
 	* @param[in]	pBufLog	Buffer for log file.
 	*/
-	void setBuffers(buffer_type* pBufCon, buffer_type* pBufLog)
+	void setBuffers(buffer_type* pBufCon = nullptr, buffer_type* pBufLog = nullptr)
 	{
-		m_bufConsole = pBufCon;
-		m_bufLog = pBufLog;
+		if (pBufCon == nullptr)
+			pBufCon = &m_fbNull;
+		else
+			m_bufConsole = pBufCon;
+
+		if (pBufLog == nullptr)
+			pBufLog = &m_fbNull;
+		else
+			m_bufLog = pBufLog;
 	}
 };
 

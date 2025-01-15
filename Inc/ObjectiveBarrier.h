@@ -54,7 +54,7 @@ public:
 		CObjectiveBarrier* poBarrier = new CObjectiveBarrier;
 		poBarrier->setMesh(NULL);
 		poBarrier->deactivate();
-		return poBarrier;
+		return static_cast<CObject*>(poBarrier);
 	}
 };
 #endif /*_OBJECTIVEBARRIER_H_*/

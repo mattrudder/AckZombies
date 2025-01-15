@@ -338,7 +338,7 @@ public:
 		{
 			// Display Debug Information
 			CString sFPS;
-			RECT rText = { 4, 0, oRenderDevice.getDisplayWidth(), oRenderDevice.getDisplayHeight() };
+			RECT rText = { 4, 0, (LONG)oRenderDevice.getDisplayWidth(), (LONG)oRenderDevice.getDisplayHeight() };
 			sFPS.Format("%s\nKernel ticks per second: %.2f\nFrames rendered per second: %.2f", APP_VERSION,
 				CTimer::getInstance().getFPS(), CGameKernel::getInstance().getRenderTimer().getTicksPerSecond());
 			m_fntDina->drawString(sFPS, 3.0f, 3.0f, 0x80000000);

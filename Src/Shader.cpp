@@ -20,6 +20,8 @@
 // System includes
 #include <d3dx9.h>
 
+using namespace std;
+
 // Static members
 unsigned short CShader::m_usEffectIDGen = 0;
 CShaderParam CShader::m_oInvalidParam;

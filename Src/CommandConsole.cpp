@@ -299,19 +299,19 @@ void CCommandConsole::parseCommand(CString sCommand)
 			{
 				CString sSyntax;
 				itCommand->second->getSyntax(sSyntax);
-				m_osOutput << sSyntax.GetBuffer() << endl;
+				m_osOutput << sSyntax.GetBuffer() << std::endl;
 			}
 			else
 			{
 				// Print command default help
-				m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << endl;
+				m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << std::endl;
 				listCommands(CString::Blank);
 			}
 		}
 		else
 		{
 			// Print command default help
-			m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << endl;
+			m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << std::endl;
 			listCommands("");
 		}
 	}
@@ -331,11 +331,11 @@ void CCommandConsole::parseCommand(CString sCommand)
 			for(size_t i = 0; i < vParams.size(); ++i)
 				pCommand->addParam(new CCommandParam(vParams[i]));
 			if(!pCommand->execute(sError))
-				m_osOutput << "- {0xFFD70000}Error:{0xFFFFFFFF} " << sError.GetBuffer() << endl;
+				m_osOutput << "- {0xFFD70000}Error:{0xFFFFFFFF} " << sError.GetBuffer() << std::endl;
 			pCommand->clearParams();
 		}
 		else
-			m_osOutput << "Invalid command \"" << sCommand << "\"!" << endl;
+			m_osOutput << "Invalid command \"" << sCommand.GetBuffer() << "\"!" << std::endl;
 	}
 }
 
@@ -515,7 +515,7 @@ bool CCommandConsole::checkCommand(CString& sPrefix)
 		if(sPrefix.Left(4) == CString("help"))
 		{
 			// Print command default help
-			m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << endl;
+			m_osOutput << "Command Help - supplies syntax information about a command: help (command)" << std::endl;
 			listCommands("");
 			return true;
 		}
@@ -528,7 +528,7 @@ bool CCommandConsole::checkCommand(CString& sPrefix)
 		{
 			CString sSyntax;
 			itCommand->second->getSyntax(sSyntax);
-			m_osOutput << sSyntax.GetBuffer() << endl;
+			m_osOutput << sSyntax.GetBuffer() << std::endl;
 			return true;
 		}
 
@@ -565,7 +565,7 @@ bool CCommandConsole::checkCommand(CString& sPrefix)
 void CCommandConsole::listCommands(CString sPrefix)
 {
 	// List commands
-	m_osOutput << "Current Registered Commands:" << endl;
+	m_osOutput << "Current Registered Commands:" << std::endl;
 	CommandList::iterator itCommand = m_mCommands.begin();
 	while(itCommand != m_mCommands.end())
 	{
@@ -573,11 +573,11 @@ void CCommandConsole::listCommands(CString sPrefix)
 		{
 			if(itCommand->first.Left(sPrefix.GetLength()) == sPrefix)
 			{
-				m_osOutput << "\t" << itCommand->first.GetBuffer() << endl;
+				m_osOutput << "\t" << itCommand->first.GetBuffer() << std::endl;
 			}
 		}
 		else
-			m_osOutput << "\t" << itCommand->first.GetBuffer() << endl;
+			m_osOutput << "\t" << itCommand->first.GetBuffer() << std::endl;
 
 		++itCommand;
 	}

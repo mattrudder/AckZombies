@@ -187,8 +187,8 @@ bool CGameKernel::initialize(HINSTANCE hInst)
 	
 	Log.openLog("AckZombies.log");
 	Debug.openLog("debug.log");
-	Log << "Logging System Initialized!" << endl;
-	Debug << "Debug Log Initialized!" << endl;
+	Log << "Logging System Initialized!" << std::endl;
+	Debug << "Debug Log Initialized!" << std::endl;
 
 	// Open Configuration
 	if(!m_oConfig.LoadConfig("AckZombies.ini"))
@@ -198,17 +198,17 @@ bool CGameKernel::initialize(HINSTANCE hInst)
 	m_hWnd = CRenderSystem::getInstance().initialize();
 	if(!m_hWnd)
 	{
-		Debug << "Render System Initialization Failed!" << endl;
+		Debug << "Render System Initialization Failed!" << std::endl;
 		return false;
 	}
 
-	Log << "Render System Initialized!" << endl;
+	Log << "Render System Initialized!" << std::endl;
 	if(!CDirectInputWrapper::getInstance().initializeDirectInput(hInst, m_hWnd))
 	{
-		Debug << "Input System Initialization Failed!" << endl;
+		Debug << "Input System Initialization Failed!" << std::endl;
 		return false;
 	}
-	Log << "Input System Initialized!" << endl;
+	Log << "Input System Initialized!" << std::endl;
 
 	// Initialize timers
 	m_tRenderSys.setInterval(1.0f/CRenderSystem::getInstance().getRenderDevice().getRefreshRate());

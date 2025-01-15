@@ -5,6 +5,7 @@
 #include "Animation.h"
 #include "Globals.h"
 #include "AnimatedMesh.h"
+#include "ShaderVariant.h"
 
 class CAnimationInstance
 {

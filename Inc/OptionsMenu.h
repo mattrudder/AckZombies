@@ -112,7 +112,7 @@ public:
 		m_nSoundVolume = COptions::getInstance().m_nSoundVolume;
 		for (int i = 0; i < m_nSoundVolume; ++i)
 		{
-			strVolume += "¦";
+			strVolume += "|";
 		}
 		poText->setText(const_cast<char*>(strVolume.c_str()));
 
@@ -131,7 +131,7 @@ public:
 		strVolume.clear();
 		for (int i = 0; i < m_nMusicVolume; ++i)
 		{
-			strVolume += "¦";
+			strVolume += "|";
 		}
 		poText->setText(const_cast<char*>(strVolume.c_str()));
 
@@ -159,7 +159,7 @@ public:
 		strVolume.clear();
 		for (int i = 0; i < m_nGammaLevel; ++i)
 		{
-			strVolume += "¦";
+			strVolume += "|";
 		}
 		poText->setText(const_cast<char*>(strVolume.c_str()));
 	}

@@ -78,7 +78,7 @@ class CCollisionGeometry : public CSingleton<CCollisionGeometry>
 	CCollisionGeometry();
 	~CCollisionGeometry();
 	CCollisionGeometry(const CCollisionGeometry &oCG) {}
-	CCollisionGeometry &operator =(const CCollisionGeometry &oCG) {}
+	CCollisionGeometry &operator =(const CCollisionGeometry &oCG) { return *this; }
 	//!}
 
 	/**

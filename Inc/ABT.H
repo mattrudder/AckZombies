@@ -198,7 +198,7 @@ protected:
 	//!@{
 	CABT(void);
 	CABT(const CABT&) {}
-	operator=(const CABT&){}
+	CABT& operator=(const CABT&){ return *this;}
 	virtual ~CABT(void);
 	//!@}
 

@@ -39,10 +39,13 @@ void CAIStateQBMeleeAttack::update(CAIEntity* poAIEntity, CCharacter* poCharacte
 	if (poAIEntity->getCurrentStateTime() < 2.0f)
 		return;
 
-	if (memcmp(&m_vVelocity, &poCharacter->getVelocity(), sizeof(D3DXVECTOR3)) == 0)
+	auto vel = poCharacter->getVelocity();
+	if (memcmp(&m_vVelocity, &vel, sizeof(D3DXVECTOR3)) == 0)
 	{
 		D3DXVECTOR3 vGoalNode;
-		D3DXVec3Subtract(&vGoalNode, &CAIManager::getInstancePtr()->findBestGoal(poCharacter)->getPosition(), &poCharacter->getBV().centerPt);
+		auto goalPos = CAIManager::getInstancePtr()->findBestGoal(poCharacter)->getPosition();
+		auto charPos = poCharacter->getBV().centerPt;
+		D3DXVec3Subtract(&vGoalNode, &goalPos, &charPos);
 		D3DXVec3Normalize(NULL, &vGoalNode, &vGoalNode);
 
 		poCharacter->setOrientation(vGoalNode);

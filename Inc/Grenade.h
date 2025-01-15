@@ -100,7 +100,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CGrenadeWeapon;
+		return static_cast<CObject*>(new CGrenadeWeapon);
 	}
 
 	/**

@@ -8,11 +8,11 @@
 #ifndef _SOUNDMANAGER_H_
 #define _SOUNDMANAGER_H_
 
-#include "singleton.h"
-#include "soundtypes.h"
+#include "Singleton.h"
+#include "SoundTypes.h"
 #include <vector>
-#include "baseresource.h"
-#include "sound.h"
+#include "BaseResource.h"
+#include "Sound.h"
 
 /**
 * the class which handles all sounds within the game
@@ -27,12 +27,13 @@ class CSoundManager : public CSingleton<CSoundManager>
 	friend class CSound;
 
 protected:
-
+#ifndef _WIN64
 	//! instance to FMOD
 	FMOD::System *m_pFmodSys;
-
+#endif
 	//! all the tracks in the game
 	CSound *m_atSounds[SND_TOTAL_NUMBER];
+
 
 	/**
 	* necessary protected trilogy of evil for singleton
@@ -43,7 +44,7 @@ protected:
 	CSoundManager(void);
 	~CSoundManager(void);
 	CSoundManager(const CSoundManager &o){}
-	CSoundManager &operator =(const CSoundManager &o){}
+	CSoundManager &operator =(const CSoundManager &o){ return *this; }
 	//!@}
 
 public:

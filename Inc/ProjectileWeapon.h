@@ -11,7 +11,7 @@
 #define _PROJECTILEWEAPON_H_
 
 #include "BaseWeapon.h"
-#include "methodsinglefunctor.h"
+#include "MethodSingleFunctor.h"
 
 /**
 * Declares the Projectile Weapon class
@@ -50,9 +50,7 @@ public:
 	* 
 	* @date Created April 7, 2006	
 	*/
-	virtual ~CProjectileWeapon() = 0
-	{
-	}
+	virtual ~CProjectileWeapon() = 0;
 
 	/**
 	* Fires a Weapon.

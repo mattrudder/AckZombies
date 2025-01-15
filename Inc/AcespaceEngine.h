@@ -28,7 +28,6 @@
 #include "DebugStream.h"
 #include <iostream>
 #include <assert.h>
-using namespace std;
 
 // Global Logging Objects
 extern CDebugStream Log;
@@ -36,7 +35,7 @@ extern CDebugStream Debug;
 
 // Helper Macros
 #ifdef _DEBUG
-#	define ACEASSERT(x) if(!x) { Debug << Console::fg_red << "Error:" << Console::def << " Assertion Failed! " << __FILE__ << " in function " << __FUNCSIG__ << " (line " << __LINE__ << "):\n" << #x << endl; } assert(x);
+#	define ACEASSERT(x) if(!(x)) { Debug << Console::fg_red << "Error:" << Console::def << " Assertion Failed! " << __FILE__ << " in function " << __FUNCTION__ << " (line " << __LINE__ << "):\n" << #x << endl; } assert(x);
 #else
 #	define ACEASSERT(x)
 #endif

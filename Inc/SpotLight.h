@@ -28,7 +28,7 @@ public:
 	CSpotLight(void);
 	virtual ~CSpotLight(void);
 
-	static CObject* create(void) { return new CSpotLight; }
+	static CObject* create(void) { return static_cast<CObject*>(new CSpotLight); }
 };
 
 #endif //_SPOTLIGHT_H_

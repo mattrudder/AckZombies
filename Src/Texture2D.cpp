@@ -48,7 +48,7 @@ void CTexture2D::onDeviceRestore(void)
 	if(m_usResourceID)
 	{
 		COM_RELEASE(m_poTexture);
-		Debug << "Loading CTexture2D from embedded resource:" << endl;
+		Debug << "Loading CTexture2D from embedded resource:" << std::endl;
 		HMODULE hModule = GetModuleHandle(NULL);
 		D3DXCreateTextureFromResource(CRenderSystem::getInstance().getRenderDevice().getD3DDevice(), 
 			hModule, MAKEINTRESOURCE(m_usResourceID), &m_poTexture);
@@ -59,7 +59,7 @@ void CTexture2D::onDeviceRestore(void)
 			return;
 
 		COM_RELEASE(m_poTexture);
-		Debug << "Loading CTexture2D '" << m_sFilename.GetBuffer() << "':" << endl;
+		Debug << "Loading CTexture2D '" << m_sFilename.GetBuffer() << "':" << std::endl;
 		D3DXCreateTextureFromFile(CRenderSystem::getInstance().getRenderDevice().getD3DDevice(), 
 			m_sFilename, &m_poTexture);
 	}
@@ -95,7 +95,7 @@ void CTexture2D::onDeviceRestore(void)
 							m_bTransparent = true;
 							m_poTexture->UnlockRect(0);
 
-							Log << "Texture loaded: " << toString().GetBuffer() << endl;
+							Log << "Texture loaded: " << toString().GetBuffer() << std::endl;
 							return;
 						}
 					}
@@ -110,10 +110,10 @@ void CTexture2D::onDeviceRestore(void)
 			break;
 		}
 
-		Log << "Texture loaded: " << toString().GetBuffer() << endl;
+		Log << "Texture loaded: " << toString().GetBuffer() << std::endl;
 	}
 	else
-		Log << "Error loading texture!" << endl;
+		Log << "Error loading texture!" << std::endl;
 }
 
 /**

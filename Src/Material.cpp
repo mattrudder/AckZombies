@@ -75,7 +75,7 @@ void CMaterial::setMaterial(const LPD3DXMATERIAL pMat, const LPD3DXEFFECTINSTANC
 			m_poDiffuse = (CTexture2D*)CResourceManager::getInstance().loadResource(RES_TEXTURE2D, pMat->pTextureFilename);
 			if(!m_poDiffuse)
 			{
-				Log << "Error loading default diffuse texture \"" << pMat->pTextureFilename << "\" - Falling back to default texture!" << endl;
+				Log << "Error loading default diffuse texture \"" << pMat->pTextureFilename << "\" - Falling back to default texture!" << std::endl;
 				if(!m_pDefaultTexture)
 				{
 #if EMBEDDED_RES == 1
@@ -95,7 +95,7 @@ void CMaterial::setMaterial(const LPD3DXMATERIAL pMat, const LPD3DXEFFECTINSTANC
 		}
 		else
 		{
-			Log << "No default texture specified - Falling back to default texture!" << endl;
+			Log << "No default texture specified - Falling back to default texture!" << std::endl;
 			if(!m_pDefaultTexture)
 			{
 #if EMBEDDED_RES == 1
@@ -114,7 +114,7 @@ void CMaterial::setMaterial(const LPD3DXMATERIAL pMat, const LPD3DXEFFECTINSTANC
 	}
 	else
 	{
-		Log << "No default texture specified - Falling back to default texture!" << endl;
+		Log << "No default texture specified - Falling back to default texture!" << std::endl;
 		if(!m_pDefaultTexture)
 		{
 #if EMBEDDED_RES == 1

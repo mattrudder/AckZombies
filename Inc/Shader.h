@@ -14,7 +14,8 @@
 
 // System includes
 #include <d3dx9.h>
-#include <hash_map>
+#include <string>
+#include <unordered_map>
 
 // Engine includes
 #include "ShaderParam.h"
@@ -36,8 +37,8 @@ class CShader : public CRenderResource
 	friend class CShaderParam;
 public:
 	//! Internal Types
-	typedef stdext::hash_map<std::string, CShaderParam*> ShaderParamHash;
-	typedef stdext::hash_map<std::string, CShaderParam*> ShaderSemanticHash;
+	typedef std::unordered_map<std::string, CShaderParam*> ShaderParamHash;
+	typedef std::unordered_map<std::string, CShaderParam*> ShaderSemanticHash;
 protected:
 	//! Counter used to generate shader IDs
 	static unsigned short m_usEffectIDGen;

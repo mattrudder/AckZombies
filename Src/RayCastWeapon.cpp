@@ -12,11 +12,13 @@
 #include "CollisionGeometry.h"
 #include "SoundManager.h"
 
+CRayCastWeapon::~CRayCastWeapon() {}
+
 /**
 * CRayCastWeapon::CRayCastWeapon
 * @date Modified June 2, 2006
 */
-CRayCastWeapon::CRayCastWeapon(int nDamage, int nCost, int nAmmo, int nAOE, CCharacter *poCharacter) : 
+CRayCastWeapon::CRayCastWeapon(int nDamage, int nCost, int nAmmo, int nAOE, CCharacter *poCharacter) :
 	CBaseWeapon(nDamage, nCost, nAmmo, nAOE, poCharacter)
 {
 }

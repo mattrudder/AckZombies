@@ -5,8 +5,8 @@
 *
 * definition of class that handles sound within the game
 */
-#include ".\soundmanager.h"
-#include "resourcemanager.h"
+#include "SoundManager.h"
+#include "ResourceManager.h"
 
 /**
 * CSoundManager::CSoundManager()
@@ -14,8 +14,10 @@
 */
 CSoundManager::CSoundManager(void)
 {
+#ifndef _WIN64
 	m_pFmodSys = NULL;
 	memset(&m_atSounds[0], 0, SND_TOTAL_NUMBER*sizeof(m_atSounds[0]));
+#endif
 }
 
 /**
@@ -33,6 +35,7 @@ CSoundManager::~CSoundManager(void)
 */
 void CSoundManager::initialize()
 {
+#ifndef _WIN64
 	// if already initialized, deinit first
 	if(m_pFmodSys)
 		deinitialize();
@@ -99,7 +102,7 @@ void CSoundManager::initialize()
 	m_atSounds[SND_EFFECT_SHOTGUNFIRE] =				(CSound*)CResourceManager::getInstance().loadResource(RES_SOUND, "shotgunFire.mp3");
 	m_atSounds[SND_EFFECT_POTATOFIRE] =					(CSound*)CResourceManager::getInstance().loadResource(RES_SOUND, "potatoeFire.mp3");
 	m_atSounds[SND_EFFECT_WATERCANNONFIRE] =			(CSound*)CResourceManager::getInstance().loadResource(RES_SOUND, "waterCannonFire.mp3");
-
+#endif
 }
 
 /**
@@ -108,6 +111,7 @@ void CSoundManager::initialize()
 */
 void CSoundManager::deinitialize()
 {
+#ifndef _WIN64
 	// attempt to release all the sounds
 	for(int i = 0; i < SND_TOTAL_NUMBER; ++i)
 	{
@@ -121,6 +125,7 @@ void CSoundManager::deinitialize()
 
 	m_pFmodSys->release();
 	m_pFmodSys = NULL;
+#endif
 }
 
 /**
@@ -129,6 +134,7 @@ void CSoundManager::deinitialize()
 */
 void CSoundManager::playSound(ESoundType eToPlay, const int nLoopCount, bool bRestart, bool bOverLapSound)
 {
+#ifndef _WIN64
 	// check if the sound is already playing
 	FMOD::Channel* pChannel;
 	// verify that there is even a channel
@@ -152,6 +158,7 @@ void CSoundManager::playSound(ESoundType eToPlay, const int nLoopCount, bool bRe
 	m_atSounds[eToPlay]->getSoundPtr()->setLoopCount(nLoopCount);
 	FMOD_RESULT res = m_pFmodSys->playSound(FMOD_CHANNEL_FREE, m_atSounds[eToPlay]->getSoundPtr(), false, &pChannel);
 	m_atSounds[eToPlay]->setChannelPtr(pChannel);
+#endif
 }
 
 /**
@@ -160,8 +167,10 @@ void CSoundManager::playSound(ESoundType eToPlay, const int nLoopCount, bool bRe
 */
 void CSoundManager::update()
 {
+#ifndef _WIN64
 	// update the system
 	m_pFmodSys->update();
+#endif
 }
 
 /**
@@ -170,6 +179,7 @@ void CSoundManager::update()
 */
 void CSoundManager::setMusicVolume(float fVolume)
 {
+#ifndef _WIN64
 	// get all the defaults of the sound
 	float fFreq, fOldVol, fPan;
 	int nPriority;
@@ -195,6 +205,7 @@ void CSoundManager::setMusicVolume(float fVolume)
 				m_atSounds[i]->getChannelPtr()->setVolume(fVolume);
 		}
 	}
+#endif
 }
 
 /**
@@ -203,6 +214,7 @@ void CSoundManager::setMusicVolume(float fVolume)
 */
 void CSoundManager::setEffectVolume(float fVolume)
 {
+#ifndef _WIN64
 	// get all the defaults of the sound
 	float fFreq, fOldVol, fPan;
 	int nPriority;
@@ -219,6 +231,7 @@ void CSoundManager::setEffectVolume(float fVolume)
 		m_atSounds[i]->getSoundPtr()->getDefaults(&fFreq, &fOldVol, &fPan, &nPriority);
 		m_atSounds[i]->getSoundPtr()->setDefaults(fFreq, fVolume, fPan, nPriority);
 	}
+#endif
 }
 
 /**
@@ -227,6 +240,7 @@ void CSoundManager::setEffectVolume(float fVolume)
 */
 void CSoundManager::fadeSound(ESoundType eSound, float fScale)
 {
+#ifndef _WIN64
 	// get the current defaults
 	float fFreq, fOldVol, fPan;
 	int nPriority;
@@ -243,6 +257,7 @@ void CSoundManager::fadeSound(ESoundType eSound, float fScale)
 
 	// reset the volume
 	m_atSounds[eSound]->getSoundPtr()->setDefaults(fFreq, fOldVol, fPan, nPriority);
+#endif
 }
 
 /**
@@ -251,6 +266,7 @@ void CSoundManager::fadeSound(ESoundType eSound, float fScale)
 */
 void CSoundManager::stopSound(ESoundType eToStop)
 {
+#ifndef _WIN64
 	FMOD::Channel* pChannel = m_atSounds[eToStop]->getChannelPtr();
 
 	// verify that there is even a channel
@@ -265,6 +281,7 @@ void CSoundManager::stopSound(ESoundType eToStop)
 			m_atSounds[eToStop]->setChannelPtr(NULL);
 		}
 	}
+#endif
 }
 
 /**
@@ -273,6 +290,7 @@ void CSoundManager::stopSound(ESoundType eToStop)
 */
 void CSoundManager::pauseSound(ESoundType eToPause, bool bPause)
 {
+#ifndef _WIN64
 	FMOD::Channel* pChannel = m_atSounds[eToPause]->getChannelPtr();
 
 	// verify that there is even a channel
@@ -281,6 +299,7 @@ void CSoundManager::pauseSound(ESoundType eToPause, bool bPause)
 		// if the channel is playing, stop it.
 		pChannel->setPaused(bPause);
 	}
+#endif
 }
 
 /**
@@ -289,5 +308,9 @@ void CSoundManager::pauseSound(ESoundType eToPause, bool bPause)
 */
 unsigned int CSoundManager::getLength(ESoundType eSound)
 {
+#ifndef _WIN64
 	return m_atSounds[eSound]->getLength();
+#else
+	return 0;
+#endif
 }

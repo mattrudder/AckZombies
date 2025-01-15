@@ -13,6 +13,8 @@
 #include "RenderSystem.h"
 #include "Material.h"
 
+
+
 /**
 * CAnimAllocator::CAnimAllocator
 * @date Modified May 16, 2006
@@ -25,7 +27,7 @@ CAnimAllocator::CAnimAllocator(CAnimatedMesh* pMesh) : m_pAnimMesh(pMesh)
 * CAnimAllocator::CreateFrame
 * @date Modified May 16, 2006
 */
-HRESULT CAnimAllocator::CreateFrame(THIS_ LPCSTR szName, LPD3DXFRAME *ppNewFrame)
+__declspec(nothrow) HRESULT CAnimAllocator::CreateFrame(THIS_ LPCSTR szName, LPD3DXFRAME *ppNewFrame)
 {
 	*ppNewFrame = NULL;
 
@@ -58,7 +60,7 @@ HRESULT CAnimAllocator::CreateFrame(THIS_ LPCSTR szName, LPD3DXFRAME *ppNewFrame
 * CAnimAllocator::CreateMeshContainer
 * @date Modified May 16, 2006
 */
-HRESULT CAnimAllocator::CreateMeshContainer(THIS_ LPCSTR szName, CONST D3DXMESHDATA * pMeshData, 
+__declspec(nothrow) HRESULT CAnimAllocator::CreateMeshContainer(THIS_ LPCSTR szName, CONST D3DXMESHDATA * pMeshData, 
 	CONST D3DXMATERIAL * pMaterials, CONST D3DXEFFECTINSTANCE * pEffectInstances,
 	DWORD dwNumMaterials, CONST DWORD * pAdjacency, LPD3DXSKININFO pSkinInfo, 
 	LPD3DXMESHCONTAINER * ppNewMeshContainer)
@@ -156,7 +158,7 @@ HRESULT CAnimAllocator::CreateMeshContainer(THIS_ LPCSTR szName, CONST D3DXMESHD
 * CAnimAllocator::DestroyFrame
 * @date Modified May 16, 2006
 */
-HRESULT CAnimAllocator::DestroyFrame(THIS_ LPD3DXFRAME pFrameToFree)
+__declspec(nothrow) HRESULT CAnimAllocator::DestroyFrame(THIS_ LPD3DXFRAME pFrameToFree)
 {
 	SMeshFrame* pFrame = (SMeshFrame*)pFrameToFree;
 
@@ -175,7 +177,7 @@ HRESULT CAnimAllocator::DestroyFrame(THIS_ LPD3DXFRAME pFrameToFree)
 * CAnimAllocator::DestroyMeshContainer
 * @date Modified May 16, 2006
 */
-HRESULT CAnimAllocator::DestroyMeshContainer(THIS_ LPD3DXMESHCONTAINER pMeshContainerToFree)
+__declspec(nothrow) HRESULT CAnimAllocator::DestroyMeshContainer(THIS_ LPD3DXMESHCONTAINER pMeshContainerToFree)
 {
 	SMeshContainer* pCont = (SMeshContainer*)pMeshContainerToFree;
 

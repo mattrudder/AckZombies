@@ -8,8 +8,8 @@
 #ifndef _SPEEDPACK_H_
 #define _SPEEDPACK_H_
 
-#include "actor.h"
-#include "player.h"
+#include "Actor.h"
+#include "Player.h"
 
 #define BOOST_AMOUNT 20.0f
 
@@ -71,7 +71,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CSpeedPack;
+		return static_cast<CObject*>(new CSpeedPack);
 	}
 };
 

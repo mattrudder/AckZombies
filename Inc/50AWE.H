@@ -57,7 +57,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new C50AWE;
+		return static_cast<CObject*>(new C50AWE);
 	}
 };
 

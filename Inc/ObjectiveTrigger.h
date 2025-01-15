@@ -108,7 +108,7 @@ public:
 		CObjectiveTrigger* poObjective = new CObjectiveTrigger;
 		poObjective->setMesh(NULL);
 		poObjective->deactivate();
-		return poObjective;
+		return static_cast<CObject*>(poObjective);
 	}
 
 	/**

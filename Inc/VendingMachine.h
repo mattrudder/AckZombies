@@ -87,7 +87,7 @@ public:
 	* 
 	* @date Created May 30, 2006
 	*/
-	void setActionBounds(SSphere &tSphere)
+	void setActionBounds(const SSphere &tSphere)
 	{
 		m_ActionBounds.centerPt = tSphere.centerPt;
 		m_ActionBounds.fRadius = tSphere.fRadius;
@@ -100,7 +100,7 @@ public:
 	*/
 	static CObject* create(void)
 	{
-		return new CVendingMachine;
+		return static_cast<CObject*>(new CVendingMachine);
 	}
 };
 

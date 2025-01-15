@@ -12,11 +12,11 @@
 #include "Character.h"
 #include "StatSystem.h"
 #include "BaseWeapon.h"
-#include "directinputwrapper.h"
-#include "menumanager.h"
-#include "camera.h"
+#include "DirectInputWrapper.h"
+#include "MenuManager.h"
+#include "Camera.h"
 #include "Grenade.h"
-#include "enemy.h"
+#include "Enemy.h"
 
 // system includes/libraries
 #include <list>
@@ -53,19 +53,19 @@ class CPlayer : public CCharacter
 	unsigned int m_unMoney;
 
 	//! the weapons in the inventory
-	list<CBaseWeapon*> m_WeaponInventory;
+	std::list<CBaseWeapon*> m_WeaponInventory;
 
 	//! the current weapon
-	list<CBaseWeapon*>::iterator m_CurWeapon;
+	std::list<CBaseWeapon*>::iterator m_CurWeapon;
 
 	//! Actor for the weapon to draw
 	CActor* m_pWeaponActor;
 
 	//! the grenades in the inventory
-	list<CGrenadeWeapon*> m_GrenadeInventory;
+	std::list<CGrenadeWeapon*> m_GrenadeInventory;
 
 	//! the current grenade
-	list<CGrenadeWeapon*>::iterator m_CurGrenade;
+	std::list<CGrenadeWeapon*>::iterator m_CurGrenade;
 
 	//! the current running speed of the player
 	float m_fMaxRunSpeed;
@@ -166,7 +166,7 @@ public:
 	void setAmtMoney(const unsigned int &unMoney) {m_unMoney = unMoney;}
 	void setInputType(const EPlayerInputType eType) {m_eInputType = eType;}
 	void setIcon(const char* filename);
-	void setDefaultScale(D3DXVECTOR3 &vScale) {m_vDefaultScale = vScale; setScale(vScale);}
+	void setDefaultScale(const D3DXVECTOR3 &vScale) {m_vDefaultScale = vScale; setScale(vScale);}
 	//!@}
 
 	/**
@@ -247,8 +247,8 @@ public:
 	CBaseWeapon* getCurrentWeapon() {if (*m_CurWeapon) return *m_CurWeapon; else return NULL;}
 	CGrenadeWeapon* getCurrentGrenade() {if (*m_CurGrenade) return *m_CurGrenade; else return NULL;}
 	SSphere getPickupSphere(void) { return m_tPickupBV; }
-	list<CBaseWeapon*> * getWeaponList() { return &m_WeaponInventory; }
-	list<CGrenadeWeapon*> * getGrenadeList() { return &m_GrenadeInventory; }
+	std::list<CBaseWeapon*> * getWeaponList() { return &m_WeaponInventory; }
+	std::list<CGrenadeWeapon*> * getGrenadeList() { return &m_GrenadeInventory; }
 	bool isAwesome() {return m_bAwesome;}
 	//!@}
 
@@ -347,7 +347,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CPlayer;
+		return static_cast<CObject*>(new CPlayer);
 	}
 
 	/**

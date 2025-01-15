@@ -202,7 +202,8 @@ void CPhysicsManager::checkCollision(CObject* poObj)
 				vec = m_poCurrentActor->getBV().centerPt - poActor->getBV().centerPt;
 				D3DXVec3Normalize(NULL, &vec, &vec);
 				// change the direction of this object's velocity
-				D3DXVec3Reflect(&vec, &(m_poCurrentActor->getVelocity()), &vec);
+				auto vel = m_poCurrentActor->getVelocity();
+				D3DXVec3Reflect(&vec, &vel, &vec);
 				m_poCurrentActor->setVelocity(vec);
 			}
 		}
@@ -226,7 +227,8 @@ void CPhysicsManager::checkCollision(CObject* poObj)
 				vec = poActor->getBV().centerPt - m_poCurrentActor->getBV().centerPt;
 				D3DXVec3Normalize(NULL, &vec, &vec);
 				// change the direction of this object's velocity
-				D3DXVec3Reflect(&vec, &(poActor->getVelocity()), &vec);
+				auto vel = poActor->getVelocity();
+				D3DXVec3Reflect(&vec, &vel, &vec);
 				poActor->setVelocity(vec);
 			}
 			// if the object was one that requires vector reflection, then reflect the velocity
@@ -235,7 +237,8 @@ void CPhysicsManager::checkCollision(CObject* poObj)
 				vec = m_poCurrentActor->getBV().centerPt - poActor->getBV().centerPt;
 				D3DXVec3Normalize(NULL, &vec, &vec);
 				// change the direction of this object's velocity
-				D3DXVec3Reflect(&vec, &(m_poCurrentActor->getVelocity()), &vec);
+				auto vel = m_poCurrentActor->getVelocity();
+				D3DXVec3Reflect(&vec, &vel, &vec);
 				m_poCurrentActor->setVelocity(vec);
 			}
 		}
@@ -283,7 +286,8 @@ void CPhysicsManager::checkFrustumCol(CObject *poObj)
 			// if the player ran into the view frustum, offset the player from moving
 			offset = pPlayer->getBV().centerPt - PtOfCol;
 
-			if(D3DXVec3Dot(&offset, &D3DXVECTOR3(plane.a,plane.b,plane.c)) < 0)
+			auto planeAbc = D3DXVECTOR3(plane.a, plane.b, plane.c);
+			if(D3DXVec3Dot(&offset, &planeAbc) < 0)
 				offset = -offset;
 
 			float fLength;
@@ -327,7 +331,8 @@ void CPhysicsManager::checkFrustumCol(CObject *poObj)
 			// if the player ran into the view frustum, offset the player from moving
 			offset = pPlayer->getBV().centerPt - PtOfCol;
 
-			if(D3DXVec3Dot(&offset, &D3DXVECTOR3(plane.a,plane.b,plane.c)) < 0)
+			auto planeAbc = D3DXVECTOR3(plane.a, plane.b, plane.c);
+			if(D3DXVec3Dot(&offset, &planeAbc) < 0)
 				offset = -offset;
 
 			float fLength;

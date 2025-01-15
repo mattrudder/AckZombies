@@ -9,8 +9,8 @@
 #define _COIN_H_
 
 // local includes/libraries
-#include "actor.h"
-#include "ticktimer.h"
+#include "Actor.h"
+#include "TickTimer.h"
 
 // define the value of the coins within the game
 enum ECoinTypes
@@ -119,7 +119,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CCoin;
+		return static_cast<CObject*>(new CCoin);
 	}
 };
 

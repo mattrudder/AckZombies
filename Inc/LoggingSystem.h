@@ -32,7 +32,7 @@ protected:
 	//!@{
 	CLoggingSystem(void);
 	CLoggingSystem(const CLoggingSystem&) {}
-	operator=(const CLoggingSystem&){}
+	CLoggingSystem& operator=(const CLoggingSystem&){ return *this; }
 	virtual ~CLoggingSystem(void);
 	//!@}
 

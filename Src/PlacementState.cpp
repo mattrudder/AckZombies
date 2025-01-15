@@ -78,7 +78,7 @@ CPlacementState::~CPlacementState(void)
 */
 void CPlacementState::onActivate(void)
 {
-	Debug << "Activate Placement State" << endl;
+	Debug << "Activate Placement State" << std::endl;
 
 	m_eCurrentType = OBJ_AI_NODE;
 	m_unIndex = 1;
@@ -133,7 +133,7 @@ void CPlacementState::onDeactivate(void)
 
 	CAIManager::getInstancePtr()->initSpawnTriggers();
 
-	Debug << "Deactivate Placement State" << endl;
+	Debug << "Deactivate Placement State" << std::endl;
 }
 
 /**
@@ -973,7 +973,7 @@ void CPlacementState::postRender(CRenderDevice& oRenderDevice)
 */
 void CPlacementState::exportNodes(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("Nodes.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())
@@ -1027,7 +1027,7 @@ void CPlacementState::exportEnemies(void)
 */
 void CPlacementState::exportEnemySpawns(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("Spawns.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())
@@ -1075,7 +1075,7 @@ void CPlacementState::exportEnemySpawns(void)
 */
 void CPlacementState::exportSpawnTriggers(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("SpawnTriggers.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())
@@ -1131,7 +1131,7 @@ void CPlacementState::exportSpawnTriggers(void)
 */
 void CPlacementState::exportObjectiveTriggers(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("ObjectiveTriggers.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())
@@ -1200,7 +1200,7 @@ void CPlacementState::exportObjectiveTriggers(void)
 */
 void CPlacementState::exportObjectiveBarriers(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("ObjectiveBarriers.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())
@@ -1245,7 +1245,7 @@ void CPlacementState::exportObjectiveBarriers(void)
 */
 void CPlacementState::exportLights(void)
 {
-	ofstream ofl;
+	std::ofstream ofl;
 	ofl.open("ObjectiveBarriers.creation.bin", std::ios_base::out | std::ios_base::binary);
 
 	if (!ofl.is_open())

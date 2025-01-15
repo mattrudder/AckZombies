@@ -14,11 +14,12 @@
 
 // Engine includes
 #include "RenderSystem.h"
-#include "Math3d.h"
+#include "Math3D.h"
 #include "TickTimer.h"
 
 // System includes
 #include <d3dx9.h>
+#include <d3dx9math.h>
 
 /**
 * Base interactive object within the game engine.
@@ -33,7 +34,7 @@ class CActor : public CObject
 	friend class CShaderManager;
 protected:
 	//! Position, scale, orientation of the actor within the game world.
-	D3DXMATRIXA16 m_ActorMatrix;
+	_D3DXMATRIXA16 m_ActorMatrix;
 	//! Mesh representation of the actor within the game world.
 	CMesh* m_pMesh;
 	//! the bounding volume of the actor
@@ -89,8 +90,8 @@ public:
 	*/
 	void setPosition(const D3DXVECTOR3 &vPos);
 	void setVelocity(const D3DXVECTOR3 &vVel) {m_vVelocity = vVel;}
-	void setActorMatrix(D3DXVECTOR3 &vRot, const D3DXVECTOR3 &vTrans, const D3DXVECTOR3 &vScale);
-	void setOrientation(D3DXVECTOR3 &vOrient);
+	void setActorMatrix(const D3DXVECTOR3 &vRot, const D3DXVECTOR3 &vTrans, const D3DXVECTOR3 &vScale);
+	void setOrientation(D3DXVECTOR3 vOrient);
 	void setBV(const SSphere &oBV) {m_oBV = oBV;}
 	void setBV(const D3DXVECTOR3 &vCpt, const float fRadius);
 	void setMesh(CMesh* poMesh) {m_pMesh = poMesh;}
@@ -153,7 +154,7 @@ public:
 	*/
 	static CObject* create()
 	{
-		return new CActor;
+		return static_cast<CObject*>(new CActor);
 	}
 
 

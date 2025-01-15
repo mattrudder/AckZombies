@@ -8,13 +8,13 @@
 #ifndef _MENUSTATE_H_
 #define _MENUSTATE_H_
 
-#include "Gamestate.h"
+#include "GameState.h"
 #include "MenuManager.h"
 #include "SoundManager.h"
 #include "LoadState.h"
 #include "ObjectManager.h"
-#include "octree.h"
-#include "aimanager.h"
+#include "Octree.h"
+#include "AIManager.h"
 
 class CMenuState : public CGameState<CMenuState>
 {

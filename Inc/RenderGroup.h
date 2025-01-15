@@ -31,6 +31,9 @@ public:
 	{
 		bool operator()(SRenderable* pLeft, SRenderable* pRight)
 		{
+			auto lhs = pLeft->fViewDist;
+			auto rhs = pRight->fViewDist;
+			return lhs < rhs;
 		}
 	};
 protected:

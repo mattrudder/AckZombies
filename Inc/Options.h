@@ -143,7 +143,7 @@ private:
 	//! Singleton stuff.
 	//!@{
 	COptions(const COptions&) {}
-	const COptions &operator=(const COptions&) {}
+	const COptions &operator=(const COptions&) { return *this; }
 	virtual ~COptions(void)
 	{
 		CRenderSystem::getInstance().getRenderDevice().getD3DDevice()->SetGammaRamp(0, 

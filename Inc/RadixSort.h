@@ -81,7 +81,7 @@ protected:
 
 		m_nOffsets[128] = 0;
 		for(int i = 129; i < 256; ++i)
-			m_nOffsets[i] m_nOffsets[i-1] + m_nCounters[nIndex][i-1];
+			m_nOffsets[i] = m_nOffsets[i-1] + m_nCounters[nIndex][i-1];
 
 		unsigned char ucByte;
 		for(int i = 0; i < m_nSortSize; ++i)

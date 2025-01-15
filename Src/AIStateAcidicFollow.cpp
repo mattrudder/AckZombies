@@ -76,7 +76,9 @@ void CAIStateAcidicFollow::update(CAIEntity* poAIEntity, CCharacter* poCharacter
 
 		// continue to go to the player
 		D3DXVECTOR3 vNewVelocity;
-		D3DXVec3Subtract(&vNewVelocity, &PATH_BACK->getPosition(), &poCharacter->getBV().centerPt);
+		auto pathBack = PATH_BACK->getPosition();
+		auto charPos = poCharacter->getBV().centerPt;
+		D3DXVec3Subtract(&vNewVelocity, &pathBack, &charPos);
 		D3DXVec3Normalize(NULL, &vNewVelocity, &vNewVelocity);
 
 		// only start to circle if we have time
@@ -89,15 +91,16 @@ void CAIStateAcidicFollow::update(CAIEntity* poAIEntity, CCharacter* poCharacter
 			if (fDist > (((CAcidic*)(poCharacter))->getAttackDist()))
 			{
 				// circle the player
+				auto up = D3DXVECTOR3(0.0f, 1.0f, 0.0f);
 				if (((CAcidic*)poCharacter)->getWay())
-					D3DXVec3Cross(&vNewVelocity, &vNewVelocity, &D3DXVECTOR3(0.0f, 1.0f, 0.0f));
+					D3DXVec3Cross(&vNewVelocity, &vNewVelocity, &up);
 				else
-					D3DXVec3Cross(&vNewVelocity, &D3DXVECTOR3(0.0f, 1.0f, 0.0f), &vNewVelocity);
+					D3DXVec3Cross(&vNewVelocity, &up, &vNewVelocity);
 			}
 			else
 			{
 				// move away from the player
-				D3DXVec3Subtract(&vNewVelocity, &poCharacter->getBV().centerPt, &PATH_BACK->getPosition());
+				D3DXVec3Subtract(&vNewVelocity, &charPos, &pathBack);
 			}
 
 			D3DXVec3Normalize(NULL, &vNewVelocity, &vNewVelocity);

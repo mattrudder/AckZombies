@@ -157,7 +157,7 @@ CObject* CGaseous::create()
 {
 	CGaseous* poZombie = new CGaseous;
 	poZombie->m_pMesh = (CMesh*)CResourceManager::getInstance().loadResource(RES_ANIMATEDMESH, "IceCreamZombie.x");
-	return poZombie;
+	return static_cast<CObject*>(poZombie);
 }
 
 /**

@@ -173,15 +173,19 @@ bool CCoin::gravitate(void)
 			m_fGravDist = fastSqrtf(fShortest);
 			// get the initial angle
 			D3DXVECTOR3 vPlayerToCoin;
-			D3DXVec3Subtract(&vPlayerToCoin, &getPosition(), &m_poPlayer->getPosition());
+			D3DXVECTOR3 coinPos = getPosition();
+			D3DXVECTOR3 playerPos = m_poPlayer->getPosition();
+			D3DXVec3Subtract(&vPlayerToCoin, &coinPos, &playerPos);
 			D3DXVec3Normalize(NULL, &vPlayerToCoin, &vPlayerToCoin);
 
 			// calculate the initial angle
-			m_fAngle = D3DXVec3Dot(&vPlayerToCoin, &D3DXVECTOR3(1.0f,0.0f,0.0f));
+			D3DXVECTOR3 right = D3DXVECTOR3(1.0f, 0.0f, 0.0f);
+			m_fAngle = D3DXVec3Dot(&vPlayerToCoin, &right);
 			m_fAngle = acos(m_fAngle);
 
 			// positive or negative
-			if (D3DXVec3Dot(&vPlayerToCoin, &D3DXVECTOR3(0.0f,0.0f,1.0f)) < 0.0f)
+			D3DXVECTOR3 fwd = D3DXVECTOR3(0.0f, 0.0f, 1.0f);
+			if (D3DXVec3Dot(&vPlayerToCoin, &fwd) < 0.0f)
 				m_fAngle *= -1.0f;
 		}
 		return false;

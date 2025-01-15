@@ -36,12 +36,18 @@ class CCommand;
 */
 class CCommandConsole
 #ifdef _UNICODE
-	: public basic_filebuf<wchar_t>, public CSingleton<CCommandConsole>
+	: public std::basic_filebuf<wchar_t>, public CSingleton<CCommandConsole>
 #else
-	: public basic_filebuf<char>, public CSingleton<CCommandConsole>
+	: public std::basic_filebuf<char>, public CSingleton<CCommandConsole>
 #endif
 {
 	friend class CSingleton<CCommandConsole>;
+
+#ifdef _UNICODE
+	using Base = std::basic_filebuf<wchar_t>;
+#else
+	using Base = std::basic_filebuf<char>;
+#endif
 public:
 	//! Status Values
 	enum EConsoleStatus	{CSTAT_CLOSED, CSTAT_OPENING, CSTAT_CLOSING, CSTAT_OPEN};
@@ -104,7 +110,7 @@ protected:
 	* @return If both streams return traits_type::eof(), the same is returned,
 	*		  otherwise the inserted character.
 	*/
-	int_type overflow(int_type c)
+	Base::int_type overflow(Base::int_type c)
 	{
 		m_osOutput.put(c);
 
@@ -123,12 +129,12 @@ protected:
 			
 			// Determine how many lines should be removed.
 			size_t nListSize = vLines.size(), nIndex = 0;
-			for (std::vector<CString>::const_iterator it = vLines.begin(); it != vLines.end(); ++it)
+			for (auto it = vLines.cbegin(); it != vLines.cend(); ++it)
 			{
 				++nIndex;
 				size_t lineLength = it->GetLength();
 
-				m_osOutput << it->GetBuffer() << endl;
+				m_osOutput << it->GetBuffer() << std::endl;
 				
 				if (dwCharsToRemove < lineLength)
 					break;

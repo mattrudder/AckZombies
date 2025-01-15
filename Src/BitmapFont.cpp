@@ -111,12 +111,12 @@ void CBitmapFont::endSprite(void)
 CBaseResource* CBitmapFont::createFontFromFile(const CString sFilename)
 {
 	// Load font definition and image
-	CBitmapFont* pFont = new CBitmapFont;
+	CBitmapFont* pFont = new CBitmapFont();
 	CConfigFile cfgFont(sFilename);
 	CString sBuffer = cfgFont.GetValue("Font Info", "ImageFile");
 
 	if(sBuffer == CString::Blank)
-		return false;
+		return nullptr;
 
 	pFont->m_poTexture = (CTexture2D*)CResourceManager::getInstance().loadResource(RES_TEXTURE2D, sBuffer);
 	pFont->m_cTileSize = SET_INT(cfgFont.GetValue("Font Info", "FontSize"), 16);
@@ -124,7 +124,7 @@ CBaseResource* CBitmapFont::createFontFromFile(const CString sFilename)
 	pFont->m_cTilesAcross = pFont->m_poTexture->getWidth() / pFont->m_cTileSize;
 
 	// Process Font Definition
-	char szChar[5] = {0};
+	char szChar[5];
 	for(short c = 0; c <= 255; ++c)
 	{
 		sprintf(szChar, "%i", c);

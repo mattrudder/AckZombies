@@ -94,15 +94,15 @@ public:
 		SSemanticType oDetails;
 		CShaderParam* pParam;
 	};
-	typedef multimap<EUpdateFreq, SShaderUpdate> ParamList;
-	typedef map<ESemantic, CBaseResource*> ParamResource;
-	typedef pair<EUpdateFreq, SShaderUpdate> ParamEntry;
+	typedef std::multimap<EUpdateFreq, SShaderUpdate> ParamList;
+	typedef std::map<ESemantic, CBaseResource*> ParamResource;
+	typedef std::pair<EUpdateFreq, SShaderUpdate> ParamEntry;
 protected:
 	//! Singleton stuff.
 	//!@{
 	CShaderManager(void) : m_pActor(NULL), m_pShader(NULL), m_pLight(NULL) {}
 	CShaderManager(const CShaderManager&) : m_pActor(NULL), m_pShader(NULL), m_pLight(NULL) {}
-	operator=(const CShaderManager&){}
+	CShaderManager& operator=(const CShaderManager&){ return *this; }
 	virtual ~CShaderManager(void) {}
 	//!@}
 

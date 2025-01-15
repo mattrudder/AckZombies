@@ -54,7 +54,7 @@ class CCamera : public CSingleton<CCamera>
 	*/
 	CCamera(void){m_fMoveDist = 5.0f; m_bUpdateMP = true;}
 	CCamera(const CCamera &oC){}
-	CCamera operator =(const CCamera &oC){}
+	CCamera operator =(const CCamera &oC){ return *this; }
 	virtual ~CCamera(void){}
 	//!@}
 public:
@@ -94,7 +94,7 @@ public:
 	* @param[in]	pos		the position of the camera
 	* @param[in]	targ	the camera's target to look at
 	*/
-	void setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, D3DXVECTOR3 &vPTwoPos = D3DXVECTOR3(0,0,0));
+	void setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, const D3DXVECTOR3 &vPTwoPos = D3DXVECTOR3(0.0, 0.0, 0.0));
 
 	/**
 	* rotate the camera based on the move passed in
