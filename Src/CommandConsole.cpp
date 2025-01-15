@@ -39,7 +39,8 @@ CCommandConsole::SVertex CCommandConsole::m_oVerts[] =
 * @date Modified Apr 04, 2006
 */
 CCommandConsole::CCommandConsole(float fConsoleSize, float fAnimSpeed) : m_eStatus(CSTAT_CLOSED), 
-	m_fY(0.0f), m_fAnimSpeed(fAnimSpeed), m_fConSize(fConsoleSize), m_unOffset(0), m_pVB(0)
+	m_fY(0.0f), m_fAnimSpeed(fAnimSpeed), m_fConSize(fConsoleSize), m_unOffset(0), m_pVB(0),
+	m_pFont(0), m_pTexture(0)
 {
 	m_mCommands["Help"] = NULL;
 }

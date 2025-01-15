@@ -18,10 +18,13 @@
 */
 void CCamera::setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, const D3DXVECTOR3 &vPTwoPos)
 {
+	auto twoPos = vPTwoPos;
+	if(twoPos == D3DXVECTOR3(0,0,0))
+		twoPos = targ;
 	// store the position of the camera
 	m_Position = pos;
 	// store the target position of the camera
-	m_Target = (targ+vPTwoPos)*0.5f;
+	m_Target = (targ+twoPos)*0.5f;
 	// store the vector from the target to the position
 	m_TargToPos = m_Position - m_Target;
 
@@ -44,11 +47,11 @@ void CCamera::setCamera(const D3DXVECTOR3 &pos, const D3DXVECTOR3 &targ, const D
 	auto X = D3DXVECTOR3(1, 0, 0);
 	if(D3DXVec3Dot(&vec, &X) < 0) m_fRotation = -m_fRotation;
 
-	if (targ == vPTwoPos)
+	if (targ == twoPos)
 		m_fInitDist = 0.0f;
 	else
 		// compute the initial distance between the characters
-		m_fInitDist = computeDistance(targ, vPTwoPos);
+		m_fInitDist = computeDistance(targ, twoPos);
 }
 
 /**
@@ -72,7 +75,7 @@ void CCamera::updateCameraSP(const D3DXVECTOR3 &targ)
 	// move the camera relative to the player's movement
 	if(m_Target == targ)
 		return;
-	
+
 	// set the target and then update the position
 	m_Target = targ;
 	m_Position = m_Target + m_TargToPos;
@@ -144,7 +147,7 @@ void CCamera::rotateCamera(float fRot)
 
 	// trig it up, i hate matrix math.
 	auto tmp = D3DXVECTOR2(m_TargToPos.x, m_TargToPos.z);
-	float fCameraDist = D3DXVec2Length(&tmp); 
+	float fCameraDist = D3DXVec2Length(&tmp);
 	m_Position.x = fCameraDist * sin(m_fRotation) + m_Target.x;
 	m_Position.z = fCameraDist * cos(m_fRotation) + m_Target.z;
 
