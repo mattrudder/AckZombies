@@ -1,17 +1,20 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) !void {
-    const target = b.standardTargetOptions(.{});
+    const target = b.standardTargetOptions(.{.default_target = .{ .abi = .msvc }});
     const optimize = b.standardOptimizeOption(.{});
+
+    // const triple = try target.result.zigTriple(b.allocator);
+    // std.debug.print("target triple: {s}", .{triple});
 
     const exe = b.addExecutable(.{
         .name = "ack-zombies",
-        .root_source_file = null,
+        .root_source_file = b.path("source/main.zig"),
         .target = target,
         .optimize = optimize,
     });
     exe.linkLibC();
-    // exe.linkLibCpp();
+    //exe.linkLibCpp();
     // exe.defineCMacro("WIN32", null);
     // exe.defineCMacro("_WINDOWS", null);
     exe.addIncludePath(b.path("Inc"));
@@ -19,6 +22,9 @@ pub fn build(b: *std.Build) !void {
     exe.addIncludePath(b.path("3rd Party"));
     exe.addIncludePath(.{ .cwd_relative = "D:\\3p\\xerces-c-3.3.0\\include" });
     exe.addIncludePath(.{ .cwd_relative = "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Include" });
+    
+    exe.addLibraryPath(.{ .cwd_relative = "D:\\3p\\xerces-c-3.3.0\\out_x64\\lib"});
+    exe.addLibraryPath(.{ .cwd_relative = "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x64" });
 
     const libs = [_][]const u8{
         // default imports from visual studio, can probably be paired down.
@@ -43,9 +49,7 @@ pub fn build(b: *std.Build) !void {
         "xinput",
         "dxguid",
     };
-
-    exe.addLibraryPath(.{ .cwd_relative = "D:\\3p\\xerces-c-3.3.0\\out_x64\\lib"});
-    exe.addLibraryPath(.{ .cwd_relative = "C:\\Program Files (x86)\\Microsoft DirectX SDK (June 2010)\\Lib\\x64" });
+    
     for (libs) |lib| {
         exe.linkSystemLibrary(lib);
     }
@@ -61,6 +65,7 @@ pub fn build(b: *std.Build) !void {
             "-D__reserved=",
         },
         .files = &.{
+            "src/ZigApi.cpp",
             "src/50AWE.cpp",
             // "src/ABT.cpp",
             "src/Acidic.cpp",
@@ -123,7 +128,7 @@ pub fn build(b: *std.Build) !void {
             "src/Light.cpp",
             "src/LoadState.cpp",
             "src/LoggingSystem.cpp",
-            "src/Main.cpp",
+            //"src/Main.cpp",
             "src/MainButtons.cpp",
             "src/Material.cpp",
             "src/Math3D.cpp",
@@ -193,10 +198,12 @@ pub fn build(b: *std.Build) !void {
         },
     });
 
-    b.installArtifact(exe);
+    const install_exe = b.addInstallArtifact(exe, .{ .dest_dir = .{ .override = .{ .custom = "Bin\\System64" } }});
+    b.getInstallStep().dependOn(&install_exe.step);
 
     const run_cmd = b.addRunArtifact(exe);
     run_cmd.step.dependOn(b.getInstallStep());
+    run_cmd.cwd = b.path("Bin\\System64");
 
     // This allows the user to pass arguments to the application in the build
     // command itself, like this: `zig build run -- arg1 arg2 etc`
